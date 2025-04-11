@@ -1,0 +1,39 @@
+  @model IEnumerable<Kutuphane.Models.Sinif>
+
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+}
+<h2>Sinif Listesi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SinifAdi)  <!-- SinifAdi alanını görüntüle -->
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklama)  <!-- Aciklama alanını görüntüle -->
+            </th>
+            <th></th>  <!-- Aksiyon butonları için boş bir alan -->
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinifAdi)  <!-- SinifAdi'ni görüntüle -->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aciklama)  <!-- Aciklama'yi görüntüle -->
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a> <!-- Aksiyonlar -->
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Yeni Sinif Ekle</a>  <!-- Yeni sinif ekleme butonu -->
