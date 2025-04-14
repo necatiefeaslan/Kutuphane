@@ -1,0 +1,40 @@
+@model Kutuphane.Models.Sinif
+
+@{
+    ViewData["Title"] = "Sınıf Sil";
+}
+
+<div class="container mt-4">
+    <div class="card shadow rounded border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">⚠️ Sınıfı Sil</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-danger fw-bold fs-5">
+                Bu sınıfı silmek istediğinize emin misiniz?
+            </p>
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold text-end">ID:</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3 fw-bold text-end">Sınıf Adı:</dt>
+                <dd class="col-sm-9">@Model.SinifAdi</dd>
+
+                <dt class="col-sm-3 fw-bold text-end">Açıklama:</dt>
+                <dd class="col-sm-9">@Model.Aciklama</dd>
+            </dl>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <form asp-action="DeleteConfirmed" method="post" class="m-0">
+                <!-- Gizli alan için doğru "asp-for" özniteliği kullanıldı -->
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Sil
+                </button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> İptal
+            </a>
+        </div>
+    </div>
+</div>

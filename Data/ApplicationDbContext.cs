@@ -9,7 +9,9 @@ namespace Kutuphane.Data
         {
         }
 
-        public DbSet<Sinif> Siniflar { get; set; }
+            public DbSet<Sinif> Siniflar { get; set; }
+            public DbSet<Ogrenci> Ogrenciler { get; set; }
+        
        
     }
 

@@ -36,8 +36,40 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9Fa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9HdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Sil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9TaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/necati148/Masaüstü/MVC/Kutuphane/Views/Shared/Error.cshtml]

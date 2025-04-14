@@ -1,0 +1,41 @@
+@model Ogrenci
+
+<div class="container mt-4">
+    <h2 class="mb-4">✏️ Öğrenci Güncelle</h2>
+
+    <form asp-action="Guncelle" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="OgrenciAdi" class="form-label">Adı</label>
+                <input asp-for="OgrenciAdi" class="form-control" placeholder="Öğrenci adını güncelleyin" />
+                <span asp-validation-for="OgrenciAdi" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="OgrenciSoyadi" class="form-label">Soyadı</label>
+                <input asp-for="OgrenciSoyadi" class="form-control" placeholder="Öğrenci soyadını güncelleyin" />
+                <span asp-validation-for="OgrenciSoyadi" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="OkulNumarasi" class="form-label">Okul Numarası</label>
+                <input asp-for="OkulNumarasi" class="form-control" placeholder="Okul numarasını güncelleyin" />
+                <span asp-validation-for="OkulNumarasi" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="SinifId" class="form-label">Sınıf</label>
+                <select asp-for="SinifId" asp-items="@(ViewBag.Siniflar)" class="form-select">
+                    <option value="0">Bir Sınıf Seç</option>
+                </select>
+                <span asp-validation-for="SinifId" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning w-100">
+                🔄 Güncelle
+            </button>
+        </div>
+    </form>
+</div>

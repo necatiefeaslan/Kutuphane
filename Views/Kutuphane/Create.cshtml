@@ -1,0 +1,35 @@
+@model Kutuphane.Models.Sinif
+
+@{
+    ViewData["Title"] = "Yeni Sınıf Ekle";
+}
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">➕ Yeni Sınıf Ekle</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label asp-for="SinifAdi" class="form-label">Sınıf Adı</label>
+                    <input asp-for="SinifAdi" class="form-control" placeholder="Örn: 10-A" />
+                    <span asp-validation-for="SinifAdi" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Aciklama" class="form-label">Açıklama</label>
+                    <textarea asp-for="Aciklama" class="form-control" rows="3" placeholder="Açıklama giriniz..."></textarea>
+                    <span asp-validation-for="Aciklama" class="text-danger"></span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Geri Dön
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Ekle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
