@@ -24,11 +24,14 @@ namespace Kutuphane.Controllers
             // Her ödünç için kalan gün ve gecikme hesaplaması
             var rapor = oduncler.Select(o => new OduncRaporViewModel
             {
+                Id = o.Id,
                 KitapAdi = o.Kitap?.KitapAdi,
                 Ogrenci = o.Ogrenci != null ? o.Ogrenci.OgrenciAdi + " " + o.Ogrenci.OgrenciSoyadi : "",
                 VerilisTarihi = o.OduncAlmaTarihi,
-                SonTeslimTarihi = o.OduncAlmaTarihi.AddDays(15), // 15 gün ödünç süresi varsayalım
-                KalanGun = (o.OduncAlmaTarihi.AddDays(15) - DateTime.Now).Days
+                SonTeslimTarihi = o.IadeTarihi ?? o.OduncAlmaTarihi.AddDays(15),
+                KalanGun = o.IadeTarihi.HasValue
+                    ? (int)Math.Ceiling((o.IadeTarihi.Value.Date - DateTime.Now.Date).TotalDays)
+                    : (int)Math.Ceiling((o.OduncAlmaTarihi.AddDays(15).Date - DateTime.Now.Date).TotalDays)
             }).ToList();
 
             return View(rapor);
@@ -37,10 +40,11 @@ namespace Kutuphane.Controllers
 
     public class OduncRaporViewModel
     {
+        public int Id { get; set; }
         public string? KitapAdi { get; set; }
         public string? Ogrenci { get; set; }
         public DateTime VerilisTarihi { get; set; }
-        public DateTime SonTeslimTarihi { get; set; }
+        public DateTime? SonTeslimTarihi { get; set; }
         public int KalanGun { get; set; }
     }
 } 

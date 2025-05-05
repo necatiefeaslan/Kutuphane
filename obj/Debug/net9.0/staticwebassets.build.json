@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hUR2HkK0A8OwY6aU4ueacvyPETKH8bdBRg+LYWN+xTg=",
+  "Hash": "wi0TZLVzjfwMzViabtLQFg82TINCUH82zchS8JEGhzg=",
   "Source": "Kutuphane",
   "BasePath": "_content/Kutuphane",
   "Mode": "Default",
@@ -584,12 +584,12 @@
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-lgphgk7g37.gz",
+      "Identity": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-np6fc6f1yd.gz",
       "SourceId": "Kutuphane",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Kutuphane",
-      "RelativePath": "Kutuphane#[.{fingerprint=lgphgk7g37}]?.styles.css.gz",
+      "RelativePath": "Kutuphane#[.{fingerprint=np6fc6f1yd}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -598,8 +598,8 @@
       "RelatedAsset": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\bundle\\Kutuphane.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "l99fm2yqk5",
-      "Integrity": "V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=",
+      "Fingerprint": "tanved45h6",
+      "Integrity": "tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\bundle\\Kutuphane.styles.css"
@@ -1214,12 +1214,12 @@
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-lgphgk7g37.gz",
+      "Identity": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-np6fc6f1yd.gz",
       "SourceId": "Kutuphane",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Kutuphane",
-      "RelativePath": "Kutuphane#[.{fingerprint=lgphgk7g37}]!.bundle.scp.css.gz",
+      "RelativePath": "Kutuphane#[.{fingerprint=np6fc6f1yd}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -1228,8 +1228,8 @@
       "RelatedAsset": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\Kutuphane.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "l99fm2yqk5",
-      "Integrity": "V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=",
+      "Fingerprint": "tanved45h6",
+      "Integrity": "tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\Kutuphane.bundle.scp.css"
@@ -1375,8 +1375,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "lgphgk7g37",
-      "Integrity": "JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=",
+      "Fingerprint": "np6fc6f1yd",
+      "Integrity": "u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\bundle\\Kutuphane.styles.css"
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "lgphgk7g37",
-      "Integrity": "JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=",
+      "Fingerprint": "np6fc6f1yd",
+      "Integrity": "u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\Kutuphane.bundle.scp.css"
@@ -3623,12 +3623,12 @@
     },
     {
       "Route": "Kutuphane.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-lgphgk7g37.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-np6fc6f1yd.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001848428835"
         }
       ],
       "ResponseHeaders": [
@@ -3638,15 +3638,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3666,13 +3666,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "W/\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
@@ -3695,11 +3695,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3709,13 +3709,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
       "Route": "Kutuphane.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-lgphgk7g37.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-np6fc6f1yd.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3724,7 +3724,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "Content-Type",
@@ -3732,11 +3732,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3754,18 +3754,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI="
+          "Value": "sha256-tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-lgphgk7g37.gz",
+      "Route": "Kutuphane.np6fc6f1yd.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-np6fc6f1yd.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001848428835"
         }
       ],
       "ResponseHeaders": [
@@ -3775,15 +3775,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3803,13 +3803,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "W/\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -3817,12 +3817,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.bundle.scp.css",
+      "Route": "Kutuphane.np6fc6f1yd.bundle.scp.css",
       "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\Kutuphane.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3840,11 +3840,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3854,7 +3854,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -3862,13 +3862,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-lgphgk7g37.gz",
+      "Route": "Kutuphane.np6fc6f1yd.bundle.scp.css.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\xdbqwm3un6-np6fc6f1yd.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3877,7 +3877,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "Content-Type",
@@ -3885,11 +3885,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3907,7 +3907,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -3915,18 +3915,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI="
+          "Value": "sha256-tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.styles.css",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-lgphgk7g37.gz",
+      "Route": "Kutuphane.np6fc6f1yd.styles.css",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-np6fc6f1yd.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001848428835"
         }
       ],
       "ResponseHeaders": [
@@ -3936,15 +3936,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3964,13 +3964,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "W/\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -3978,12 +3978,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.styles.css",
+      "Route": "Kutuphane.np6fc6f1yd.styles.css",
       "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\scopedcss\\bundle\\Kutuphane.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -4001,11 +4001,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4015,7 +4015,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -4023,13 +4023,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
-      "Route": "Kutuphane.lgphgk7g37.styles.css.gz",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-lgphgk7g37.gz",
+      "Route": "Kutuphane.np6fc6f1yd.styles.css.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-np6fc6f1yd.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4038,7 +4038,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "Content-Type",
@@ -4046,11 +4046,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4068,7 +4068,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lgphgk7g37"
+          "Value": "np6fc6f1yd"
         },
         {
           "Name": "label",
@@ -4076,18 +4076,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI="
+          "Value": "sha256-tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48="
         }
       ]
     },
     {
       "Route": "Kutuphane.styles.css",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-lgphgk7g37.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-np6fc6f1yd.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001848428835"
         }
       ],
       "ResponseHeaders": [
@@ -4097,15 +4097,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4125,13 +4125,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "W/\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
@@ -4154,11 +4154,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ=\""
+          "Value": "\"u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4168,13 +4168,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JesndFjfVRAiu2+xccDCc/fasyqtlzM7vYjGAcs2QqQ="
+          "Value": "sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v+C1aDIB3M="
         }
       ]
     },
     {
       "Route": "Kutuphane.styles.css.gz",
-      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-lgphgk7g37.gz",
+      "AssetFile": "C:\\Users\\Necati Efe Aslan\\OneDrive\\Masaüstü\\MVC\\Kutuphane\\obj\\Debug\\net9.0\\compressed\\dl8t9p7q1w-np6fc6f1yd.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4183,7 +4183,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "540"
         },
         {
           "Name": "Content-Type",
@@ -4191,11 +4191,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI=\""
+          "Value": "\"tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 17:10:53 GMT"
+          "Value": "Mon, 05 May 2025 19:33:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4213,7 +4213,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-V2Vx298nAhzCGLhqCJ3vafSRlATOTwFsmWyOgz0oeGI="
+          "Value": "sha256-tSkkwzIw5ntqy0kdNoyfk59GWnUKKR8RurdY5gxnU48="
         }
       ]
     },

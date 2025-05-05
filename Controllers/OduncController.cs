@@ -42,7 +42,7 @@ namespace Kutuphane.Controllers
         // POST: Odunc/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KitapId,OgrenciId")] Odunc odunc)
+        public async Task<IActionResult> Create([Bind("KitapId,OgrenciId,IadeTarihi")] Odunc odunc)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +74,51 @@ namespace Kutuphane.Controllers
                 _context.Update(odunc);
                 await _context.SaveChangesAsync();
             }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetKitapBilgi(int id)
+        {
+            var kitap = await _context.Kitaplar
+                .Include(k => k.Kategori)
+                .FirstOrDefaultAsync(k => k.Id == id);
+            
+            return Json(new { 
+                stok = kitap?.StokAdedi ?? 0,
+                kategori = kitap?.Kategori?.KategoriAdi ?? ""
+            });
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetOgrenciBilgi(int id)
+        {
+            var ogrenci = await _context.Ogrenciler
+                .Include(o => o.Sinif)
+                .FirstOrDefaultAsync(o => o.Id == id);
+            
+            var aktifOdunc = await _context.Oduncler
+                .CountAsync(o => o.OgrenciId == id && !o.IadeEdildi);
+            
+            return Json(new { 
+                sinif = ogrenci?.Sinif?.SinifAdi ?? "",
+                aktifOdunc = aktifOdunc
+            });
+        }
+
+        // POST: Odunc/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id, string? returnUrl)
+        {
+            var odunc = await _context.Oduncler.FindAsync(id);
+            if (odunc != null)
+            {
+                _context.Oduncler.Remove(odunc);
+                await _context.SaveChangesAsync();
+            }
+            if (!string.IsNullOrEmpty(returnUrl))
+                return Redirect(returnUrl);
             return RedirectToAction(nameof(Index));
         }
     }

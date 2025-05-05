@@ -425,8 +425,8 @@ C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\com
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\anvd8j6146-9vr69e8ynj.gz
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\xiccpc7zwo-87fc7y1x7t.gz
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\r0v4jlyl16-mlv21k5csn.gz
-C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\dl8t9p7q1w-lgphgk7g37.gz
-C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\xdbqwm3un6-lgphgk7g37.gz
+C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\dl8t9p7q1w-np6fc6f1yd.gz
+C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\compressed\xdbqwm3un6-np6fc6f1yd.gz
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\obj\Debug\net9.0\staticwebassets.build.endpoints.json

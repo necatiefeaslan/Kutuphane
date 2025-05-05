@@ -37,16 +37,16 @@
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"231"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 17:10:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Kutuphane/Kutuphane.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Kutuphane.lgphgk7g37.bundle.scp.css'))</AssetFile>
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Kutuphane.np6fc6f1yd.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-JesndFjfVRAiu2\u002BxccDCc/fasyqtlzM7vYjGAcs2QqQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1127"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022JesndFjfVRAiu2\u002BxccDCc/fasyqtlzM7vYjGAcs2QqQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 17:10:53 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v\u002BC1aDIB3M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1127"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022u2OEbq51I1144tWx71bvAW99VT9vxjqu5v\u002BC1aDIB3M=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 19:33:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Kutuphane/Kutuphane.lgphgk7g37.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Kutuphane.lgphgk7g37.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/Kutuphane/Kutuphane.np6fc6f1yd.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Kutuphane.np6fc6f1yd.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lgphgk7g37"},{"Name":"integrity","Value":"sha256-JesndFjfVRAiu2\u002BxccDCc/fasyqtlzM7vYjGAcs2QqQ="},{"Name":"label","Value":"_content/Kutuphane/Kutuphane.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1127"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022JesndFjfVRAiu2\u002BxccDCc/fasyqtlzM7vYjGAcs2QqQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 17:10:53 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"np6fc6f1yd"},{"Name":"integrity","Value":"sha256-u2OEbq51I1144tWx71bvAW99VT9vxjqu5v\u002BC1aDIB3M="},{"Name":"label","Value":"_content/Kutuphane/Kutuphane.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1127"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022u2OEbq51I1144tWx71bvAW99VT9vxjqu5v\u002BC1aDIB3M=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 19:33:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Kutuphane/lib/bootstrap/dist/css/bootstrap-grid.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\bootstrap-grid.css'))</AssetFile>

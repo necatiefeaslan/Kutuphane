@@ -7,7 +7,7 @@
 
 <div class="container mt-4">
     <h2 class="mb-4"><i class="bi bi-journal-arrow-up text-success me-2"></i> Yeni Ödünç Verme</h2>
-    <form asp-action="Create" method="post">
+    <form asp-action="Create" method="post" id="oduncForm">
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Kitap</label>
@@ -23,22 +23,29 @@
                 }
                 else
                 {
-                    <select asp-for="KitapId" class="form-select" asp-items="ViewBag.KitapId">
+                    <select asp-for="KitapId" class="form-select" asp-items="ViewBag.KitapId" id="kitapSelect">
                         <option value="">-- Kitap Seçin --</option>
                     </select>
                 }
                 <span asp-validation-for="KitapId" class="text-danger small"></span>
+                <div id="kitapBilgi" class="small text-muted mt-1"></div>
             </div>
             <div class="col-md-6">
                 <label asp-for="OgrenciId" class="form-label">Öğrenci</label>
-                <select asp-for="OgrenciId" class="form-select" asp-items="ViewBag.OgrenciId">
+                <select asp-for="OgrenciId" class="form-select" asp-items="ViewBag.OgrenciId" id="ogrenciSelect">
                     <option value="">-- Öğrenci Seçin --</option>
                 </select>
                 <span asp-validation-for="OgrenciId" class="text-danger small"></span>
+                <div id="ogrenciBilgi" class="small text-muted mt-1"></div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">İade Tarihi</label>
+                <input type="date" class="form-control" asp-for="IadeTarihi" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" required />
+                <span asp-validation-for="IadeTarihi" class="text-danger small"></span>
             </div>
         </div>
         <div class="mt-4">
-            <button type="submit" class="btn btn-success w-100 d-flex align-items-center justify-content-center fs-5">
+            <button type="submit" class="btn btn-success w-100 d-flex align-items-center justify-content-center fs-5" id="submitBtn">
                 <i class="bi bi-arrow-repeat me-2"></i> Ödünç Ver
             </button>
             <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
@@ -50,4 +57,79 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            // Form validasyonu
+            $('#oduncForm').on('submit', function(e) {
+                if (!validateForm()) {
+                    e.preventDefault();
+                }
+            });
+
+            // Kitap seçimi değiştiğinde
+            $('#kitapSelect').change(function() {
+                const kitapId = $(this).val();
+                if (kitapId) {
+                    // Kitap bilgilerini getir
+                    $.get('/Odunc/GetKitapBilgi/' + kitapId, function(data) {
+                        $('#kitapBilgi').html(`
+                            <i class="bi bi-info-circle"></i> 
+                            Stok: ${data.stok} | 
+                            Kategori: ${data.kategori}
+                        `);
+                    });
+                } else {
+                    $('#kitapBilgi').html('');
+                }
+            });
+
+            // Öğrenci seçimi değiştiğinde
+            $('#ogrenciSelect').change(function() {
+                const ogrenciId = $(this).val();
+                if (ogrenciId) {
+                    // Öğrenci bilgilerini getir
+                    $.get('/Odunc/GetOgrenciBilgi/' + ogrenciId, function(data) {
+                        $('#ogrenciBilgi').html(`
+                            <i class="bi bi-person"></i> 
+                            Sınıf: ${data.sinif} | 
+                            Aktif Ödünç: ${data.aktifOdunc}
+                        `);
+                    });
+                } else {
+                    $('#ogrenciBilgi').html('');
+                }
+            });
+
+            // Form validasyonu
+            function validateForm() {
+                let isValid = true;
+                const kitapId = $('#kitapSelect').val();
+                const ogrenciId = $('#ogrenciSelect').val();
+                const iadeTarihi = $('[name="IadeTarihi"]').val();
+
+                if (!kitapId) {
+                    $('#kitapSelect').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#kitapSelect').removeClass('is-invalid');
+                }
+
+                if (!ogrenciId) {
+                    $('#ogrenciSelect').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#ogrenciSelect').removeClass('is-invalid');
+                }
+
+                if (!iadeTarihi) {
+                    $('[name="IadeTarihi"]').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('[name="IadeTarihi"]').removeClass('is-invalid');
+                }
+
+                return isValid;
+            }
+        });
+    </script>
 } 
