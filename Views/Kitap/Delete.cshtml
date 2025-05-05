@@ -1,0 +1,37 @@
+@model Kutuphane.Models.Kitap
+
+@{
+    ViewData["Title"] = "Kitap Sil";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow-sm border-danger rounded-4">
+            <div class="card-body">
+                <h2 class="fw-bold mb-4 text-danger">Kitap Sil</h2>
+                <div class="alert alert-danger mb-4">
+                    <strong>Uyarı:</strong> Bu kitabı silmek istediğinize emin misiniz?
+                </div>
+                <dl class="row mb-4">
+                    <dt class="col-sm-4">Kitap Adı:</dt>
+                    <dd class="col-sm-8">@Model.KitapAdi</dd>
+                    <dt class="col-sm-4">Yazar:</dt>
+                    <dd class="col-sm-8">@Model.Yazar</dd>
+                    <dt class="col-sm-4">ISBN:</dt>
+                    <dd class="col-sm-8">@Model.ISBN</dd>
+                    <dt class="col-sm-4">Yayın Yılı:</dt>
+                    <dd class="col-sm-8">@Model.YayinYili</dd>
+                    <dt class="col-sm-4">Stok Adedi:</dt>
+                    <dd class="col-sm-8">@Model.StokAdedi</dd>
+                </dl>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary">Vazgeç</a>
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 

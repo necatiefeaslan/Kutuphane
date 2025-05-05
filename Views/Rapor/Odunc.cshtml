@@ -1,0 +1,42 @@
+@model List<Kutuphane.Controllers.OduncRaporViewModel>
+
+@{
+    ViewData["Title"] = "Ödünç Kitap Raporu";
+}
+
+<div class="container mt-4">
+    <h1 class="fw-bold mb-4"><i class="bi bi-clipboard-data text-danger me-2"></i> Ödünç Kitap Raporu</h1>
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Kitap Adı</th>
+                <th>Öğrenci</th>
+                <th>Veriliş Tarihi</th>
+                <th>Son Teslim Tarihi</th>
+                <th>Kalan Gün</th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var item in Model)
+{
+    var gecikmis = item.KalanGun < 0;
+    <tr class="@(gecikmis ? "table-danger" : "")">
+        <td>@item.KitapAdi</td>
+        <td>@item.Ogrenci</td>
+        <td>@item.VerilisTarihi.ToString("dd.MM.yyyy")</td>
+        <td>@item.SonTeslimTarihi.ToString("dd.MM.yyyy")</td>
+        <td>
+            @if (gecikmis)
+            {
+                <span class="fw-bold text-danger">Süre Dolmuş</span>
+            }
+            else
+            {
+                <span>@item.KalanGun gün</span>
+            }
+        </td>
+    </tr>
+}
+        </tbody>
+    </table>
+</div> 

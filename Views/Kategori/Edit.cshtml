@@ -1,0 +1,36 @@
+@model Kutuphane.Models.Kategori
+
+@{
+    ViewData["Title"] = "Kategori Düzenle";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="bi bi-tags-fill text-success"></i> Kategori Güncelle</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="KategoriAdi" class="form-label">Kategori Adı</label>
+                <input asp-for="KategoriAdi" class="form-control" placeholder="Kategori adını güncelleyin" />
+                <span asp-validation-for="KategoriAdi" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Aciklama" class="form-label">Açıklama</label>
+                <input asp-for="Aciklama" class="form-control" placeholder="Açıklama girin" />
+                <span asp-validation-for="Aciklama" class="text-danger small"></span>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning w-100 d-flex align-items-center justify-content-center fs-5">
+                <i class="bi bi-arrow-repeat me-2"></i> Güncelle
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

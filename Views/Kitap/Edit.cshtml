@@ -1,0 +1,58 @@
+@model Kutuphane.Models.Kitap
+
+@{
+    ViewData["Title"] = "Kitap Düzenle";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="bi bi-book-half text-primary"></i> Kitap Güncelle</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="KitapAdi" class="form-label">Kitap Adı</label>
+                <input asp-for="KitapAdi" class="form-control" placeholder="Kitap adını güncelleyin" />
+                <span asp-validation-for="KitapAdi" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Yazar" class="form-label">Yazar</label>
+                <input asp-for="Yazar" class="form-control" placeholder="Yazar adını güncelleyin" />
+                <span asp-validation-for="Yazar" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ISBN" class="form-label">ISBN</label>
+                <input asp-for="ISBN" class="form-control" placeholder="ISBN girin" />
+                <span asp-validation-for="ISBN" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="YayinYili" class="form-label">Yayın Yılı</label>
+                <input asp-for="YayinYili" class="form-control" placeholder="Yayın yılını girin" />
+                <span asp-validation-for="YayinYili" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="StokAdedi" class="form-label">Stok Adedi</label>
+                <input asp-for="StokAdedi" class="form-control" placeholder="Stok adedini girin" />
+                <span asp-validation-for="StokAdedi" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="KategoriId" class="form-label">Kategori</label>
+                <select asp-for="KategoriId" class="form-select" asp-items="ViewBag.KategoriId">
+                    <option value="">-- Kategori Seçin --</option>
+                </select>
+                <span asp-validation-for="KategoriId" class="text-danger small"></span>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning w-100 d-flex align-items-center justify-content-center fs-5">
+                <i class="bi bi-arrow-repeat me-2"></i> Güncelle
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

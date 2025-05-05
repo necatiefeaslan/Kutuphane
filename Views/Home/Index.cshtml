@@ -1,8 +1,94 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="bi bi-journal-bookmark-fill text-primary"></i> Kütüphane Yönetim Sistemi
+            </h1>
+            <p class="lead text-secondary mb-4">
+                Hoş geldiniz! Bu sistem ile okul kütüphanenizde kitap, kategori, öğrenci, sınıf ve ödünç işlemlerini kolayca yönetebilirsiniz.<br>
+                Modern ve kullanıcı dostu arayüz ile tüm işlemler elinizin altında.
+            </p>
+        </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Kitap" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-book-half display-4 text-primary"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Kitaplar</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Kategori" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-tags-fill display-4 text-success"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Kategoriler</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Ogrenci" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-people-fill display-4 text-warning"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Öğrenciler</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Kutuphane" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-building display-4 text-info"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Sınıflar</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Odunc" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-journal-arrow-up display-4 text-danger"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Ödünç İşlemleri</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="/Rapor/Odunc" class="text-decoration-none">
+                <div class="card shadow-sm text-center h-100 border-0 hover-shadow">
+                    <div class="card-body py-4">
+                        <i class="bi bi-clipboard-data display-4 text-secondary"></i>
+                        <h5 class="mt-3 mb-0 text-dark">Raporlar</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-8 mx-auto">
+            <div class="alert alert-primary shadow-sm text-center">
+                <i class="bi bi-info-circle-fill"></i> <b>Not:</b> Tüm işlemler menüden veya yukarıdaki kutulardan hızlıca erişilebilir. Sistemi aktif olarak kullanmaya başlayabilirsiniz!
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+.hover-shadow:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.15)!important;
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
+}
+</style>

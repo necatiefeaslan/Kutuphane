@@ -17,6 +17,87 @@ namespace Kutuphane.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
 
+            modelBuilder.Entity("Kutuphane.Models.Kategori", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KategoriAdi")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Kategoriler");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Kitap", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ISBN")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("KategoriId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("KitapAdi")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StokAdedi")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("YayinYili")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Yazar")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KategoriId");
+
+                    b.ToTable("Kitaplar");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Odunc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IadeEdildi")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("IadeTarihi")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("KitapId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("OduncAlmaTarihi")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OgrenciId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KitapId");
+
+                    b.HasIndex("OgrenciId");
+
+                    b.ToTable("Oduncler");
+                });
+
             modelBuilder.Entity("Kutuphane.Models.Ogrenci", b =>
                 {
                     b.Property<int>("Id")
@@ -67,15 +148,55 @@ namespace Kutuphane.Migrations
                     b.ToTable("Siniflar");
                 });
 
+            modelBuilder.Entity("Kutuphane.Models.Kitap", b =>
+                {
+                    b.HasOne("Kutuphane.Models.Kategori", "Kategori")
+                        .WithMany("Kitaplar")
+                        .HasForeignKey("KategoriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kategori");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Odunc", b =>
+                {
+                    b.HasOne("Kutuphane.Models.Kitap", "Kitap")
+                        .WithMany()
+                        .HasForeignKey("KitapId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Kutuphane.Models.Ogrenci", "Ogrenci")
+                        .WithMany()
+                        .HasForeignKey("OgrenciId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kitap");
+
+                    b.Navigation("Ogrenci");
+                });
+
             modelBuilder.Entity("Kutuphane.Models.Ogrenci", b =>
                 {
                     b.HasOne("Kutuphane.Models.Sinif", "Sinif")
-                        .WithMany()
+                        .WithMany("Ogrenciler")
                         .HasForeignKey("SinifId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Sinif");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Kategori", b =>
+                {
+                    b.Navigation("Kitaplar");
+                });
+
+            modelBuilder.Entity("Kutuphane.Models.Sinif", b =>
+                {
+                    b.Navigation("Ogrenciler");
                 });
 #pragma warning restore 612, 618
         }

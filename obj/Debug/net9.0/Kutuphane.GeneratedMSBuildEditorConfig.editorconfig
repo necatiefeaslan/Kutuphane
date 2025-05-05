@@ -17,77 +17,129 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Kutuphane
 build_property.RootNamespace = Kutuphane
-build_property.ProjectDir = /home/necati148/Masaüstü/MVC/Kutuphane/
+build_property.ProjectDir = C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/necati148/Masaüstü/MVC/Kutuphane
+build_property.MSBuildProjectDirectory = C:\Users\Necati Efe Aslan\OneDrive\Masaüstü\MVC\Kutuphane
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0NyZWF0ZS5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kategori/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0RlbGV0ZS5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kategori/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0RldGFpbHMuY3NodG1s
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kategori/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0VkaXQuY3NodG1s
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kategori/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS3V0dXBoYW5lL0luZGV4LmNzaHRtbA==
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kategori/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F0ZWdvcmlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Ekle.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9Fa2xlLmNzaHRtbA==
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kitap/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Guncelle.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9HdW5jZWxsZS5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kitap/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9JbmRleC5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kitap/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Sil.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2dyZW5jaS9TaWwuY3NodG1s
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kitap/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kitap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3V0dXBoYW5lXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3V0dXBoYW5lXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3V0dXBoYW5lXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/necati148/Masaüstü/MVC/Kutuphane/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-y7oha5uxur
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3V0dXBoYW5lXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Kutuphane/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3V0dXBoYW5lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Odunc/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2R1bmNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Odunc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2R1bmNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dyZW5jaVxFa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Guncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dyZW5jaVxHdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dyZW5jaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Ogrenci/Sil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dyZW5jaVxTaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Rapor/Odunc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFwb3JcT2R1bmMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Necati Efe Aslan/OneDrive/Masaüstü/MVC/Kutuphane/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1jrfp4dvkc

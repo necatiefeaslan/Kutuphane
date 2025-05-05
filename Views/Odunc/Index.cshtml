@@ -1,0 +1,59 @@
+@model IEnumerable<Kutuphane.Models.Odunc>
+
+@{
+    ViewData["Title"] = "Ödünç Kitap Listesi";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="fw-bold mb-0"><i class="bi bi-journal-arrow-up text-danger me-2"></i> Ödünç Kitap Listesi</h1>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-journal-arrow-up"></i> Yeni Ödünç Verme
+        </a>
+    </div>
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Id</th>
+                <th>Kitap Adı</th>
+                <th>Öğrenci</th>
+                <th>Ödünç Alma Tarihi</th>
+                <th>İade Tarihi</th>
+                <th>Durum</th>
+                <th class="text-center">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var item in Model) {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Kitap?.KitapAdi</td>
+                <td>@(item.Ogrenci != null ? item.Ogrenci.OgrenciAdi + " " + item.Ogrenci.OgrenciSoyadi : "")</td>
+                <td>@item.OduncAlmaTarihi.ToShortDateString()</td>
+                <td>@(item.IadeTarihi.HasValue ? item.IadeTarihi.Value.ToShortDateString() : "-")</td>
+                <td>
+                    @if (item.IadeEdildi)
+                    {
+                        <span class="badge bg-success">İade Edildi</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Ödünç Verildi</span>
+                    }
+                </td>
+                <td class="text-center">
+                    @if (!item.IadeEdildi)
+                    {
+                        <form asp-action="IadeAl" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="bi bi-arrow-90deg-down"></i> İade Al
+                            </button>
+                        </form>
+                    }
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>
+</div> 

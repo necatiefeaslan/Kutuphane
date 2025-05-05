@@ -1,0 +1,41 @@
+@model Kutuphane.Models.Kitap
+
+@{
+    ViewData["Title"] = "Kitap Detay";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow-sm rounded-4">
+            <div class="card-header bg-info text-white rounded-top-4">
+                <h4 class="mb-0">Kitap Detayları</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 fw-bold text-end">ID:</dt>
+                    <dd class="col-sm-8">@Model.Id</dd>
+                    <dt class="col-sm-4 fw-bold text-end">Kitap Adı:</dt>
+                    <dd class="col-sm-8">@Model.KitapAdi</dd>
+                    <dt class="col-sm-4 fw-bold text-end">Yazar:</dt>
+                    <dd class="col-sm-8">@Model.Yazar</dd>
+                    <dt class="col-sm-4 fw-bold text-end">ISBN:</dt>
+                    <dd class="col-sm-8">@Model.ISBN</dd>
+                    <dt class="col-sm-4 fw-bold text-end">Yayın Yılı:</dt>
+                    <dd class="col-sm-8">@Model.YayinYili</dd>
+                    <dt class="col-sm-4 fw-bold text-end">Stok Adedi:</dt>
+                    <dd class="col-sm-8">@Model.StokAdedi</dd>
+                    <dt class="col-sm-4 fw-bold text-end">Kategori:</dt>
+                    <dd class="col-sm-8">@Model.Kategori?.KategoriAdi</dd>
+                </dl>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Listeye Dön
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                    <i class="bi bi-pencil"></i> Güncelle
+                </a>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,41 +1,34 @@
 @model Kutuphane.Models.Sinif
 
 @{
-    ViewData["Title"] = "Sınıf Düzenle";
+    ViewData["Title"] = "Sınıf Güncelle";
 }
 
 <div class="container mt-4">
-    <div class="card shadow rounded">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">✏️ Sınıf Düzenle</h4>
+    <h2 class="mb-4"><i class="bi bi-building text-info"></i> Sınıf Güncelle</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="SinifAdi" class="form-label">Sınıf Adı</label>
+                <input asp-for="SinifAdi" class="form-control" placeholder="Sınıf adını güncelleyin" />
+                <span asp-validation-for="SinifAdi" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Aciklama" class="form-label">Açıklama</label>
+                <input asp-for="Aciklama" class="form-control" placeholder="Açıklama girin" />
+                <span asp-validation-for="Aciklama" class="text-danger small"></span>
+            </div>
         </div>
-        <div class="card-body">
-            <form asp-action="Edit" method="post">
-                <div class="mb-3">
-                    <label asp-for="Id" class="form-label">ID</label>
-                    <input asp-for="Id" class="form-control" readonly />
-                </div>
-                <div class="mb-3">
-                    <label asp-for="SinifAdi" class="form-label">Sınıf Adı</label>
-                    <input asp-for="SinifAdi" class="form-control" />
-                    <span asp-validation-for="SinifAdi" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Aciklama" class="form-label">Açıklama</label>
-                    <textarea asp-for="Aciklama" class="form-control" rows="3"></textarea>
-                    <span asp-validation-for="Aciklama" class="text-danger"></span>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <a asp-action="Index" class="btn btn-secondary">
-                        <i class="bi bi-arrow-left"></i> Geri Dön
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> Kaydet
-                    </button>
-                </div>
-            </form>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-warning w-100 d-flex align-items-center justify-content-center fs-5">
+                <i class="bi bi-arrow-repeat me-2"></i> Güncelle
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
         </div>
-    </div>
+    </form>
 </div>
 
 @section Scripts {

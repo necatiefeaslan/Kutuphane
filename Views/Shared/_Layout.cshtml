@@ -4,47 +4,79 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Kutuphane</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Kutuphane.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { min-height: 100vh; }
+        .sidebar {
+            min-height: 100vh;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+        }
+        .sidebar .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            background: #e9ecef;
+            color: #007bff;
+        }
+        .sidebar .nav-link i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        .sidebar .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 1.5rem 0 1rem 1.5rem;
+            color: #007bff;
+        }
+        @@media (max-width: 991.98px) {
+            .sidebar { min-height: auto; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Kutuphane</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kutuphane" asp-action="Index">Sınıflar</a>
-                        </li>
-                        <li class="nav-item"></li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ogrenci" asp-action="Index">Öğrenciler</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="d-flex">
+        <nav class="sidebar d-flex flex-column p-3" style="width: 250px;">
+            <div class="sidebar-title mb-4">
+                <i class="bi bi-journal-bookmark-fill"></i> Kutuphane
             </div>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-house-door-fill"></i> Ana Sayfa
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kitap" ? "active" : "")" asp-area="" asp-controller="Kitap" asp-action="Index">
+                <i class="bi bi-book-half"></i> Kitaplar
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kategori" ? "active" : "")" asp-area="" asp-controller="Kategori" asp-action="Index">
+                <i class="bi bi-tags-fill"></i> Kategoriler
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Ogrenci" ? "active" : "")" asp-area="" asp-controller="Ogrenci" asp-action="Index">
+                <i class="bi bi-people-fill"></i> Öğrenciler
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kutuphane" ? "active" : "")" asp-area="" asp-controller="Kutuphane" asp-action="Index">
+                <i class="bi bi-building"></i> Sınıflar
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Odunc" ? "active" : "")" asp-area="" asp-controller="Odunc" asp-action="Index">
+                <i class="bi bi-journal-arrow-up"></i> Ödünç İşlemleri
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Rapor" ? "active" : "")" asp-area="" asp-controller="Rapor" asp-action="Odunc">
+                <i class="bi bi-clipboard-data"></i> Raporlar
+            </a>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Kutuphane - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="flex-grow-1">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+           
         </div>
-    </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

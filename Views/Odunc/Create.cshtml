@@ -1,0 +1,53 @@
+@model Kutuphane.Models.Odunc
+
+@{
+    ViewData["Title"] = "Yeni Ödünç Verme";
+    var seciliKitapId = ViewData["SeciliKitapId"] as int?;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="bi bi-journal-arrow-up text-success me-2"></i> Yeni Ödünç Verme</h2>
+    <form asp-action="Create" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Kitap</label>
+                @if (seciliKitapId != null)
+                {
+                    var kitapList = ViewData["KitapId"] as SelectList;
+                    if (kitapList != null)
+                    {
+                        var kitapAdi = kitapList.FirstOrDefault(k => k?.Value == seciliKitapId.ToString())?.Text;
+                        <input type="hidden" asp-for="KitapId" value="@seciliKitapId" />
+                        <input type="text" class="form-control" value="@kitapAdi" readonly />
+                    }
+                }
+                else
+                {
+                    <select asp-for="KitapId" class="form-select" asp-items="ViewBag.KitapId">
+                        <option value="">-- Kitap Seçin --</option>
+                    </select>
+                }
+                <span asp-validation-for="KitapId" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="OgrenciId" class="form-label">Öğrenci</label>
+                <select asp-for="OgrenciId" class="form-select" asp-items="ViewBag.OgrenciId">
+                    <option value="">-- Öğrenci Seçin --</option>
+                </select>
+                <span asp-validation-for="OgrenciId" class="text-danger small"></span>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success w-100 d-flex align-items-center justify-content-center fs-5">
+                <i class="bi bi-arrow-repeat me-2"></i> Ödünç Ver
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 
