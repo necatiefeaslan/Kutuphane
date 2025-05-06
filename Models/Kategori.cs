@@ -9,7 +9,7 @@ namespace Kutuphane.Models
 
         [Required(ErrorMessage = "Kategori adı zorunludur.")]
         [Display(Name = "Kategori Adı")]
-        public string KategoriAdi { get; set; }
+        public string? KategoriAdi { get; set; }
 
         [Display(Name = "Açıklama")]
         public string? Aciklama { get; set; }

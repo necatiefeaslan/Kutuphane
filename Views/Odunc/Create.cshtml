@@ -5,54 +5,78 @@
     var seciliKitapId = ViewData["SeciliKitapId"] as int?;
 }
 
-<div class="container mt-4">
-    <h2 class="mb-4"><i class="bi bi-journal-arrow-up text-success me-2"></i> Yeni Ödünç Verme</h2>
-    <form asp-action="Create" method="post" id="oduncForm">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label">Kitap</label>
-                @if (seciliKitapId != null)
-                {
-                    var kitapList = ViewData["KitapId"] as SelectList;
-                    if (kitapList != null)
-                    {
-                        var kitapAdi = kitapList.FirstOrDefault(k => k?.Value == seciliKitapId.ToString())?.Text;
-                        <input type="hidden" asp-for="KitapId" value="@seciliKitapId" />
-                        <input type="text" class="form-control" value="@kitapAdi" readonly />
-                    }
-                }
-                else
-                {
-                    <select asp-for="KitapId" class="form-select" asp-items="ViewBag.KitapId" id="kitapSelect">
-                        <option value="">-- Kitap Seçin --</option>
-                    </select>
-                }
-                <span asp-validation-for="KitapId" class="text-danger small"></span>
-                <div id="kitapBilgi" class="small text-muted mt-1"></div>
-            </div>
-            <div class="col-md-6">
-                <label asp-for="OgrenciId" class="form-label">Öğrenci</label>
-                <select asp-for="OgrenciId" class="form-select" asp-items="ViewBag.OgrenciId" id="ogrenciSelect">
-                    <option value="">-- Öğrenci Seçin --</option>
-                </select>
-                <span asp-validation-for="OgrenciId" class="text-danger small"></span>
-                <div id="ogrenciBilgi" class="small text-muted mt-1"></div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">İade Tarihi</label>
-                <input type="date" class="form-control" asp-for="IadeTarihi" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" required />
-                <span asp-validation-for="IadeTarihi" class="text-danger small"></span>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="fw-bold mb-4 text-success d-flex align-items-center">
+                    <i class="bi bi-journal-arrow-up me-2"></i> Yeni Ödünç Verme
+                </h2>
+                <form asp-action="Create" method="post" id="oduncForm" autocomplete="off">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Kitap</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-journal"></i></span>
+                                @if (seciliKitapId != null)
+                                {
+                                    var kitapList = ViewData["KitapId"] as SelectList;
+                                    if (kitapList != null)
+                                    {
+                                        var kitapAdi = kitapList.FirstOrDefault(k => k?.Value == seciliKitapId.ToString())?.Text;
+                                        <input type="hidden" asp-for="KitapId" value="@seciliKitapId" />
+                                        <input type="text" class="form-control form-control-lg" value="@kitapAdi" readonly />
+                                    }
+                                }
+                                else
+                                {
+                                    <select asp-for="KitapId" class="form-select form-select-lg" asp-items="ViewBag.KitapId" id="kitapSelect">
+                                        <option value="">-- Kitap Seçin --</option>
+                                    </select>
+                                }
+                            </div>
+                            <span asp-validation-for="KitapId" class="text-danger small"></span>
+                            <div id="kitapBilgi" class="small text-muted mt-1"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="OgrenciId" class="form-label">Öğrenci</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                                <select asp-for="OgrenciId" class="form-select form-select-lg" asp-items="ViewBag.OgrenciId" id="ogrenciSelect">
+                                    <option value="">-- Öğrenci Seçin --</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="OgrenciId" class="text-danger small"></span>
+                            <div id="ogrenciBilgi" class="small text-muted mt-1"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">İade Tarihi</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-calendar-check"></i></span>
+                                <input type="date" class="form-control form-control-lg" asp-for="IadeTarihi" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" required />
+                            </div>
+                            <span asp-validation-for="IadeTarihi" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ödünç Alma Tarihi</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-calendar-event"></i></span>
+                                <input type="date" class="form-control form-control-lg" name="OduncAlmaTarihi" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 d-flex gap-3">
+                        <button type="submit" class="btn btn-success btn-lg w-100 d-flex align-items-center justify-content-center fs-5" id="submitBtn">
+                            <i class="bi bi-arrow-repeat me-2"></i> Ödünç Ver
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg w-100 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-arrow-left"></i> Listeye Dön
+                        </a>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="mt-4">
-            <button type="submit" class="btn btn-success w-100 d-flex align-items-center justify-content-center fs-5" id="submitBtn">
-                <i class="bi bi-arrow-repeat me-2"></i> Ödünç Ver
-            </button>
-            <a asp-action="Index" class="btn btn-outline-secondary w-100 mt-2">
-                <i class="bi bi-arrow-left"></i> Listeye Dön
-            </a>
-        </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts {
@@ -132,4 +156,16 @@
             }
         });
     </script>
-} 
+}
+<style>
+    .input-group-text i {
+        font-size: 1.2rem;
+        color: #198754;
+    }
+    .card {
+        transition: box-shadow 0.3s;
+    }
+    .card:hover {
+        box-shadow: 0 0 24px 0 rgba(25,135,84,0.15);
+    }
+</style> 

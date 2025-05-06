@@ -5,31 +5,56 @@
 }
 
 <div class="container mt-4">
-    <h1 class="fw-bold mb-4"><i class="bi bi-clipboard-data text-danger me-2"></i> Ödünç Kitap Raporu</h1>
-    <table class="table table-bordered table-hover shadow-sm">
-        <thead class="table-light">
-            <tr>
-                <th>Kitap Adı</th>
-                <th>Öğrenci</th>
-                <th>Veriliş Tarihi</th>
-                <th>Son Teslim Tarihi</th>
-                <th>Kalan Gün</th>
-                <th>İşlem</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold mb-0"><i class="bi bi-clipboard-data text-danger me-2"></i> Ödünç Kitap Raporu</h1>
+        <button onclick="window.print()" class="btn btn-primary">
+            <i class="bi bi-printer"></i> Yazdır
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>Kitap Adı</th>
+                    <th>Öğrenci</th>
+                    <th>Veriliş Tarihi</th>
+                    <th>Son Teslim Tarihi</th>
+                    <th>Kalan Gün</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
 @foreach (var item in Model)
 {
-    var gecikmis = item.KalanGun < 0;
-    <tr class="@(gecikmis ? "table-danger" : "")">
+    string rowClass = "";
+    if (item.IadeEdildi)
+        rowClass = "table-success";
+    else if (item.KalanGun <= 0)
+        rowClass = "table-danger";
+    else if (item.KalanGun <= 2)
+        rowClass = "table-warning";
+
+    <tr class="@rowClass">
         <td>@item.KitapAdi</td>
         <td>@item.Ogrenci</td>
         <td>@item.VerilisTarihi.ToString("dd.MM.yyyy")</td>
         <td>@(item.SonTeslimTarihi.HasValue ? item.SonTeslimTarihi.Value.ToString("dd.MM.yyyy") : "-")</td>
         <td>
-            @if (gecikmis)
+            @if (item.IadeEdildi)
+            {
+                <span class="fw-bold text-success">İade Edildi</span>
+            }
+            else if (item.KalanGun < 0)
             {
                 <span class="fw-bold text-danger">Süre Dolmuş</span>
+            }
+            else if (item.KalanGun == 0)
+            {
+                <span class="fw-bold text-danger">0 gün (Uyarı!)</span>
+            }
+            else if (item.KalanGun <= 2)
+            {
+                <span class="fw-bold text-warning">@item.KalanGun gün (Uyarı!)</span>
             }
             else
             {
@@ -38,7 +63,7 @@
         </td>
         <td>
             <form asp-controller="Odunc" asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline" onsubmit="return confirm('Bu ödünç kaydını silmek istediğinize emin misiniz?');">
-                <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.Path" />
                 <button type="submit" class="btn btn-danger btn-sm ms-1">
                     <i class="bi bi-trash"></i> Sil
                 </button>
@@ -46,6 +71,51 @@
         </td>
     </tr>
 }
-        </tbody>
-    </table>
-</div> 
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    @@media print {
+        body, html {
+            background: #fff !important;
+        }
+        nav.sidebar, .sidebar, .d-flex > nav, .d-flex > .sidebar {
+            display: none !important;
+        }
+        .btn, footer, header {
+            display: none !important;
+        }
+        .container {
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+        }
+        main, .container {
+            width: 100% !important;
+        }
+        .table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+        }
+        .table td, .table th {
+            border: 1px solid #000 !important;
+            padding: 8px !important;
+        }
+        .table-danger {
+            background-color: #f8d7da !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .text-danger {
+            color: #dc3545 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        @@page {
+            margin: 20mm;
+        }
+    }
+</style> 

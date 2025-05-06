@@ -31,7 +31,8 @@ namespace Kutuphane.Controllers
                 SonTeslimTarihi = o.IadeTarihi ?? o.OduncAlmaTarihi.AddDays(15),
                 KalanGun = o.IadeTarihi.HasValue
                     ? (int)Math.Ceiling((o.IadeTarihi.Value.Date - DateTime.Now.Date).TotalDays)
-                    : (int)Math.Ceiling((o.OduncAlmaTarihi.AddDays(15).Date - DateTime.Now.Date).TotalDays)
+                    : (int)Math.Ceiling((o.OduncAlmaTarihi.AddDays(15).Date - DateTime.Now.Date).TotalDays),
+                IadeEdildi = o.IadeEdildi
             }).ToList();
 
             return View(rapor);
@@ -46,5 +47,6 @@ namespace Kutuphane.Controllers
         public DateTime VerilisTarihi { get; set; }
         public DateTime? SonTeslimTarihi { get; set; }
         public int KalanGun { get; set; }
+        public bool IadeEdildi { get; set; }
     }
 } 

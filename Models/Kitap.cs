@@ -10,18 +10,19 @@ namespace Kutuphane.Models
 
         [Required(ErrorMessage = "Kitap adı zorunludur.")]
         [Display(Name = "Kitap Adı")]
-        public string KitapAdi { get; set; }
+        public string? KitapAdi { get; set; }
 
         [Required(ErrorMessage = "Yazar adı zorunludur.")]
         [Display(Name = "Yazar")]
-        public string Yazar { get; set; }
+        public string? Yazar { get; set; }
 
         [Display(Name = "ISBN")]
         public string? ISBN { get; set; }
 
         [Display(Name = "Yayın Yılı")]
-        public int? YayinYili { get; set; }
+        public int YayinYili { get; set; }
 
+    
         [Display(Name = "Stok Adedi")]
         public int StokAdedi { get; set; }
 
@@ -30,5 +31,7 @@ namespace Kutuphane.Models
 
         [ForeignKey("KategoriId")]
         public virtual Kategori? Kategori { get; set; }
+
+        public virtual ICollection<Odunc>? Oduncler { get; set; }
     }
 } 

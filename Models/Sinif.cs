@@ -6,10 +6,14 @@ namespace Kutuphane.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Sınıf adı boş olamaz.")]
-        public string SinifAdi { get; set; }
-        [Required(ErrorMessage = "Sınıf açıklaması boş olamaz.")]
-        public string Aciklama { get; set; }
-         public ICollection<Ogrenci>? Ogrenciler { get; set; }
+
+        [Required(ErrorMessage = "Sınıf adı zorunludur.")]
+        [Display(Name = "Sınıf Adı")]
+        public string? SinifAdi { get; set; }
+
+        [Display(Name = "Açıklama")]
+        public string? Aciklama { get; set; }
+
+        public virtual ICollection<Ogrenci>? Ogrenciler { get; set; }
     }
 }
