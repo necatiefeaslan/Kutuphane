@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Kutuphane")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d8d49359343c63fb81e744423328035f3dc3470")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f22bb0072ab1320178a0fdaabe1d0deefd2bf96")]
 [assembly: System.Reflection.AssemblyProductAttribute("Kutuphane")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Kutuphane")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
