@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Kutuphane.Data;
 using Kutuphane.Models;
 using System.Linq;
 
 namespace Kutuphane.Controllers
 {
-    public class KutuphaneController : Controller
+    public class KutuphaneController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public KutuphaneController(ApplicationDbContext context)
+        public KutuphaneController(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
@@ -17,14 +18,16 @@ namespace Kutuphane.Controllers
         // GET: Sinif
         public IActionResult Index()
         {
-            var Siniflar = _context.Siniflar.ToList();
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var Siniflar = _context.Siniflar.Where(s => s.UserId == userId).ToList();
             return View(Siniflar);
         }
 
         // GET: Sinif/Details/5
         public IActionResult Details(int id)
         {
-            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (Sinif == null)
             {
                 return NotFound();
@@ -45,6 +48,7 @@ namespace Kutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
+                Sinif.UserId = int.Parse(HttpContext.Session.GetString("UserId"));
                 _context.Siniflar.Add(Sinif);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -55,7 +59,8 @@ namespace Kutuphane.Controllers
         // GET: Sinif/Edit/5
         public IActionResult Edit(int id)
         {
-            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (Sinif == null)
             {
                 return NotFound();
@@ -68,7 +73,8 @@ namespace Kutuphane.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Sinif Sinif)
         {
-            var guncellenecekSinif = _context.Siniflar.FirstOrDefault(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var guncellenecekSinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (guncellenecekSinif != null)
             {
                 guncellenecekSinif.SinifAdi = Sinif.SinifAdi;
@@ -81,7 +87,8 @@ namespace Kutuphane.Controllers
         // GET: Sinif/Delete/5
         public IActionResult Delete(int id)
         {
-            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (Sinif == null)
             {
                 return NotFound();
@@ -94,7 +101,8 @@ namespace Kutuphane.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (Sinif != null)
             {
                 _context.Siniflar.Remove(Sinif);

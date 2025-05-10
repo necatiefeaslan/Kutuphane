@@ -32,6 +32,8 @@ namespace Kutuphane.Models
         [ForeignKey("KategoriId")]
         public virtual Kategori? Kategori { get; set; }
 
+        public int UserId { get; set; }
+
         public virtual ICollection<Odunc>? Oduncler { get; set; }
     }
 } 

@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Kutuphane</title>
+    <title>@ViewData["Title"] - Kütüphane Yönetim Sistemi</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Kutuphane.styles.css" asp-append-version="true" />
@@ -37,6 +37,16 @@
             margin: 1.5rem 0 1rem 1.5rem;
             color: #007bff;
         }
+        .sidebar .user-info {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: auto;
+        }
+        .sidebar .user-info .username {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
         @@media (max-width: 991.98px) {
             .sidebar { min-height: auto; }
         }
@@ -44,37 +54,52 @@
 </head>
 <body>
     <div class="d-flex">
-        <nav class="sidebar d-flex flex-column p-3" style="width: 250px;">
-            <div class="sidebar-title mb-4">
-                <i class="bi bi-journal-bookmark-fill"></i> Kutuphane
-            </div>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
-                <i class="bi bi-house-door-fill"></i> Ana Sayfa
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kitap" ? "active" : "")" asp-area="" asp-controller="Kitap" asp-action="Index">
-                <i class="bi bi-book-half"></i> Kitaplar
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kategori" ? "active" : "")" asp-area="" asp-controller="Kategori" asp-action="Index">
-                <i class="bi bi-tags-fill"></i> Kategoriler
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Ogrenci" ? "active" : "")" asp-area="" asp-controller="Ogrenci" asp-action="Index">
-                <i class="bi bi-people-fill"></i> Öğrenciler
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kutuphane" ? "active" : "")" asp-area="" asp-controller="Kutuphane" asp-action="Index">
-                <i class="bi bi-building"></i> Sınıflar
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Odunc" ? "active" : "")" asp-area="" asp-controller="Odunc" asp-action="Index">
-                <i class="bi bi-journal-arrow-up"></i> Ödünç İşlemleri
-            </a>
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Rapor" ? "active" : "")" asp-area="" asp-controller="Rapor" asp-action="Odunc">
-                <i class="bi bi-clipboard-data"></i> Raporlar
-            </a>
-        </nav>
+        @if (Context.Session.GetString("UserId") != null)
+        {
+            <nav class="sidebar d-flex flex-column p-3" style="width: 250px;">
+                <div class="sidebar-title mb-4">
+                    <i class="bi bi-journal-bookmark-fill"></i> Kütüphane
+                </div>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door-fill"></i> Ana Sayfa
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kitap" ? "active" : "")" asp-area="" asp-controller="Kitap" asp-action="Index">
+                    <i class="bi bi-book-half"></i> Kitaplar
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kategori" ? "active" : "")" asp-area="" asp-controller="Kategori" asp-action="Index">
+                    <i class="bi bi-tags-fill"></i> Kategoriler
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Ogrenci" ? "active" : "")" asp-area="" asp-controller="Ogrenci" asp-action="Index">
+                    <i class="bi bi-people-fill"></i> Öğrenciler
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Kutuphane" ? "active" : "")" asp-area="" asp-controller="Kutuphane" asp-action="Index">
+                    <i class="bi bi-building"></i> Sınıflar
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Odunc" ? "active" : "")" asp-area="" asp-controller="Odunc" asp-action="Index">
+                    <i class="bi bi-journal-arrow-up"></i> Ödünç İşlemleri
+                </a>
+                <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Rapor" ? "active" : "")" asp-area="" asp-controller="Rapor" asp-action="Odunc">
+                    <i class="bi bi-clipboard-data"></i> Raporlar
+                </a>
+                <div class="user-info">
+                    <div class="username">
+                        <i class="bi bi-person-circle"></i> @ViewBag.FullName
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="User" asp-action="Profile">
+                            <i class="bi bi-person"></i> Profil
+                        </a>
+                        <a class="btn btn-outline-danger btn-sm" asp-controller="User" asp-action="Logout">
+                            <i class="bi bi-box-arrow-right"></i> Çıkış
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        }
         <div class="flex-grow-1">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
-           
         </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

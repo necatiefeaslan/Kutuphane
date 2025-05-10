@@ -29,5 +29,7 @@ namespace Kutuphane.Models
 
         [Display(Name = "Durum")]
         public bool IadeEdildi { get; set; } // false: ödünç verildi, true: iade edildi
+
+        public int UserId { get; set; }
     }
 } 

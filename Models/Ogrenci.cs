@@ -13,5 +13,6 @@ namespace Kutuphane.Models
         public Sinif? Sinif { get; set; } 
 
         public DateTime EklenmeTarihi { get; set; } = DateTime.Now;
+        public int UserId { get; set; }
     }
 }

@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Giriş Yap</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login" method="post" autocomplete="off">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="Email" class="control-label">E-posta</label>
+                            <input name="Email" id="Email" class="form-control" required autocomplete="email" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="login_password" class="control-label">Şifre</label>
+                            <input name="login_password" id="login_password" type="password" class="form-control" required autocomplete="new-password" />
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p>Hesabınız yok mu? <a asp-action="Register">Kayıt Ol</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('Email').value = '';
+            document.getElementById('login_password').value = '';
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

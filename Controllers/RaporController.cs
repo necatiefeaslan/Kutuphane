@@ -5,10 +5,10 @@ using Kutuphane.Models;
 
 namespace Kutuphane.Controllers
 {
-    public class RaporController : Controller
+    public class RaporController : BaseController
     {
         private readonly ApplicationDbContext _context;
-        public RaporController(ApplicationDbContext context)
+        public RaporController(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
@@ -16,9 +16,11 @@ namespace Kutuphane.Controllers
         // GET: Rapor/Odunc
         public async Task<IActionResult> Odunc()
         {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var oduncler = await _context.Oduncler
                 .Include(o => o.Kitap)
                 .Include(o => o.Ogrenci)
+                .Where(o => o.UserId == userId)
                 .ToListAsync();
 
             // Her ödünç için kalan gün ve gecikme hesaplaması

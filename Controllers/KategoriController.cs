@@ -5,11 +5,11 @@ using Kutuphane.Data;
 
 namespace Kutuphane.Controllers
 {
-    public class KategoriController : Controller
+    public class KategoriController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public KategoriController(ApplicationDbContext context)
+        public KategoriController(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
@@ -17,7 +17,8 @@ namespace Kutuphane.Controllers
         // GET: Kategori
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Kategoriler.ToListAsync());
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            return View(await _context.Kategoriler.Where(k => k.UserId == userId).ToListAsync());
         }
 
         // GET: Kategori/Create
@@ -33,6 +34,7 @@ namespace Kutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
+                kategori.UserId = int.Parse(HttpContext.Session.GetString("UserId"));
                 _context.Add(kategori);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -47,8 +49,8 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-
-            var kategori = await _context.Kategoriler.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kategori = await _context.Kategoriler.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kategori == null)
             {
                 return NotFound();
@@ -65,9 +67,15 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var existingKategori = await _context.Kategoriler.AsNoTracking().FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
+            if (existingKategori == null)
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
+                kategori.UserId = userId;
                 try
                 {
                     _context.Update(kategori);
@@ -96,14 +104,12 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-
-            var kategori = await _context.Kategoriler
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kategori = await _context.Kategoriler.FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
             if (kategori == null)
             {
                 return NotFound();
             }
-
             return View(kategori);
         }
 
@@ -112,7 +118,8 @@ namespace Kutuphane.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var kategori = await _context.Kategoriler.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kategori = await _context.Kategoriler.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kategori != null)
             {
                 _context.Kategoriler.Remove(kategori);
@@ -129,7 +136,8 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-            var kategori = await _context.Kategoriler.FirstOrDefaultAsync(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kategori = await _context.Kategoriler.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kategori == null)
             {
                 return NotFound();

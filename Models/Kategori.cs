@@ -16,5 +16,6 @@ namespace Kutuphane.Models
 
         // Navigation property
         public virtual ICollection<Kitap>? Kitaplar { get; set; }
+        public int UserId { get; set; }
     }
 } 

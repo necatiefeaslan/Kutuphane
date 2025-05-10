@@ -6,11 +6,11 @@ using Kutuphane.Data;
 
 namespace Kutuphane.Controllers
 {
-    public class KitapController : Controller
+    public class KitapController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public KitapController(ApplicationDbContext context)
+        public KitapController(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
@@ -18,7 +18,9 @@ namespace Kutuphane.Controllers
         // GET: Kitap
         public async Task<IActionResult> Index()
         {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var kitaplar = await _context.Kitaplar
+                .Where(k => k.UserId == userId)
                 .Include(k => k.Kategori)
                 .ToListAsync();
             return View(kitaplar);
@@ -27,7 +29,8 @@ namespace Kutuphane.Controllers
         // GET: Kitap/Create
         public IActionResult Create()
         {
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "Id", "KategoriAdi");
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi");
             return View();
         }
 
@@ -38,11 +41,13 @@ namespace Kutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
+                kitap.UserId = int.Parse(HttpContext.Session.GetString("UserId"));
                 _context.Add(kitap);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "Id", "KategoriAdi", kitap.KategoriId);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -54,12 +59,13 @@ namespace Kutuphane.Controllers
                 return NotFound();
             }
 
-            var kitap = await _context.Kitaplar.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kitap = await _context.Kitaplar.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kitap == null)
             {
                 return NotFound();
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "Id", "KategoriAdi", kitap.KategoriId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -73,8 +79,16 @@ namespace Kutuphane.Controllers
                 return NotFound();
             }
 
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var existingKitap = await _context.Kitaplar.AsNoTracking().FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
+            if (existingKitap == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
+                kitap.UserId = userId;
                 try
                 {
                     _context.Update(kitap);
@@ -93,7 +107,7 @@ namespace Kutuphane.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "Id", "KategoriAdi", kitap.KategoriId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -105,9 +119,10 @@ namespace Kutuphane.Controllers
                 return NotFound();
             }
 
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var kitap = await _context.Kitaplar
                 .Include(k => k.Kategori)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
             if (kitap == null)
             {
                 return NotFound();
@@ -121,7 +136,8 @@ namespace Kutuphane.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var kitap = await _context.Kitaplar.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kitap = await _context.Kitaplar.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kitap != null)
             {
                 _context.Kitaplar.Remove(kitap);
@@ -138,7 +154,8 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-            var kitap = await _context.Kitaplar.Include(k => k.Kategori).FirstOrDefaultAsync(k => k.Id == id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kitap = await _context.Kitaplar.Include(k => k.Kategori).FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kitap == null)
             {
                 return NotFound();

@@ -4,14 +4,13 @@ using Kutuphane.Models; // Adjust namespace based on your models
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-
 namespace Kutuphane.Controllers
 {
-    public class OgrenciController : Controller
+    public class OgrenciController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
-        public OgrenciController(ApplicationDbContext context)
+        public OgrenciController(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
@@ -19,15 +18,21 @@ namespace Kutuphane.Controllers
         // GET: Ogrenci
         public async Task<IActionResult> Index()
         {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var ogrenciler = await _context.Ogrenciler
-            .Include(o => o.Sinif) // Sinif navigasyonunu doldur
-            .ToListAsync();
+                .Include(o => o.Sinif)
+                .Where(o => o.UserId == userId)
+                .ToListAsync();
             return View(ogrenciler);
         }
 
         public async Task<IActionResult> Ekle()
         {
-            ViewBag.Siniflar = new SelectList(await _context.Siniflar.ToListAsync(), "Id", "SinifAdi");
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            ViewBag.Siniflar = new SelectList(
+                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                "Id", "SinifAdi"
+            );
             return View();
         }
         // POST: Ogrenci/Create
@@ -35,13 +40,18 @@ namespace Kutuphane.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Ekle(Ogrenci ogrenci)
         {
-             if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                ogrenci.UserId = int.Parse(HttpContext.Session.GetString("UserId"));
                 _context.Ogrenciler.Add(ogrenci);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-           ViewBag.Siniflar = new SelectList(await _context.Siniflar.ToListAsync(), "Id", "SinifAdi");
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            ViewBag.Siniflar = new SelectList(
+                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                "Id", "SinifAdi"
+            );
             return View(ogrenci);
         }
 
@@ -49,10 +59,14 @@ namespace Kutuphane.Controllers
         [HttpGet]
         public async Task<IActionResult> Guncelle(int id)
         {
-            var ogrenci = await _context.Ogrenciler.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var ogrenci = await _context.Ogrenciler.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
             if (ogrenci == null) return NotFound();
 
-            ViewBag.Siniflar = new SelectList(await _context.Siniflar.ToListAsync(), "Id", "SinifAdi");
+            ViewBag.Siniflar = new SelectList(
+                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                "Id", "SinifAdi"
+            );
             return View(ogrenci);
         }
 
@@ -63,10 +77,18 @@ namespace Kutuphane.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Siniflar = new SelectList(await _context.Siniflar.ToListAsync(), "Id", "SinifAdi");
+                var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+                ViewBag.Siniflar = new SelectList(
+                    await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                    "Id", "SinifAdi"
+                );
                 return View(ogrenci);
             }
+            var userId2 = int.Parse(HttpContext.Session.GetString("UserId"));
+            var existingOgrenci = await _context.Ogrenciler.AsNoTracking().FirstOrDefaultAsync(o => o.Id == ogrenci.Id && o.UserId == userId2);
+            if (existingOgrenci == null) return NotFound();
 
+            ogrenci.UserId = userId2;
             _context.Update(ogrenci);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -76,22 +98,24 @@ namespace Kutuphane.Controllers
         [HttpGet]
         public async Task<IActionResult> Sil(int id)
         {
-            var ogrenci = await _context.Ogrenciler.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var ogrenci = await _context.Ogrenciler.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
             if (ogrenci == null) return NotFound();
 
-            return View(ogrenci); // Silmeden önce kullanıcıya doğrulama için nesneyi gösterir
+            return View(ogrenci);
         }
 
         [HttpPost, ActionName("Sil")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SilOnayla(int id)
         {
-            var ogrenci = await _context.Ogrenciler.FindAsync(id);
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var ogrenci = await _context.Ogrenciler.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
             if (ogrenci == null) return NotFound();
 
-            _context.Ogrenciler.Remove(ogrenci); // Nesneyi sil
+            _context.Ogrenciler.Remove(ogrenci);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index"); // Ana listeye yönlendir
+            return RedirectToAction("Index");
         }
     }
 

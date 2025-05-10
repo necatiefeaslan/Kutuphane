@@ -15,5 +15,6 @@ namespace Kutuphane.Models
         public string? Aciklama { get; set; }
 
         public virtual ICollection<Ogrenci>? Ogrenciler { get; set; }
+        public int UserId { get; set; }
     }
 }
