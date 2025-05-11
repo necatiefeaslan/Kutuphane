@@ -17,9 +17,9 @@
         <table class="table table-bordered table-hover shadow-sm">
             <thead class="table-light">
                 <tr>
-                    <th>Id</th>
-                    <th>Adı</th>
-                    <th>Soyadı</th>
+                    
+                    <th>Öğrenci Adı</th>
+                    <th>Öğrenci Soyadı</th>
                     <th>Okul Numarası</th>
                     <th>Sınıf</th>
                     <th class="text-center">İşlemler</th>
@@ -29,7 +29,7 @@
                 @foreach (var ogrenci in Model)
                 {
                     <tr>
-                        <td>@ogrenci.Id</td>
+                        
                         <td>@ogrenci.OgrenciAdi</td>
                         <td>@ogrenci.OgrenciSoyadi</td>
                         <td>@ogrenci.OkulNumarasi</td>
@@ -42,6 +42,7 @@
                                 <a href="/Ogrenci/Sil/@ogrenci.Id" class="btn btn-danger btn-sm">
                                     <i class="bi bi-trash"></i> Sil
                                 </a>
+                                
                             </div>
                         </td>
                     </tr>

@@ -14,7 +14,7 @@
     <table class="table table-bordered table-hover shadow-sm">
         <thead class="table-light">
             <tr>
-                <th>Id</th>
+               
                 <th>Kitap Adı</th>
                 <th>Öğrenci</th>
                 <th>Ödünç Alma Tarihi</th>
@@ -26,7 +26,7 @@
         <tbody>
 @foreach (var item in Model) {
             <tr>
-                <td>@item.Id</td>
+                
                 <td>@item.Kitap?.KitapAdi</td>
                 <td>@(item.Ogrenci != null ? item.Ogrenci.OgrenciAdi + " " + item.Ogrenci.OgrenciSoyadi : "")</td>
                 <td>@item.OduncAlmaTarihi.ToShortDateString()</td>

@@ -4,54 +4,71 @@
     ViewData["Title"] = "Kayıt Ol";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center">Kayıt Ol</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Register" autocomplete="off">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="Username" class="control-label">Kullanıcı Adı</label>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-header bg-white text-center border-0">
+                <h3 class="fw-bold text-primary">Kayıt Ol</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Register" autocomplete="off">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Kullanıcı Adı</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-person-circle"></i></span>
                             <input name="Username" id="Username" class="form-control" autocomplete="username" />
-                            <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="Email" class="control-label">E-posta</label>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">E-posta</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-envelope-at"></i></span>
                             <input name="Email" id="Email" class="form-control" autocomplete="email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="Password" class="control-label">Şifre</label>
-                            <input name="Password" id="Password" class="form-control" type="password" autocomplete="new-password" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Şifre</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-lock-fill"></i></span>
+                            <input name="Password" id="Password" type="password" class="form-control" autocomplete="new-password" />
                         </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="FirstName" class="control-label">Ad</label>
+                    <div class="mb-3">
+                        <label for="FirstName" class="form-label">Ad</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
                             <input name="FirstName" id="FirstName" class="form-control" autocomplete="off" />
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="LastName" class="control-label">Soyad</label>
+                    <div class="mb-4">
+                        <label for="LastName" class="form-label">Soyad</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-person-badge"></i></span>
                             <input name="LastName" id="LastName" class="form-control" autocomplete="off" />
-                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer text-center">
-                    <p>Zaten hesabınız var mı? <a asp-action="Login">Giriş Yap</a></p>
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill">Kayıt Ol</button>
+                    </div>
+                </form>
+
+                <div class="text-center">
+                    <small class="text-muted">Zaten hesabınız var mı? <a asp-action="Login" class="text-decoration-none">Giriş Yap</a></small>
                 </div>
             </div>
         </div>
@@ -61,12 +78,10 @@
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('Username').value = '';
-            document.getElementById('Email').value = '';
-            document.getElementById('Password').value = '';
-            document.getElementById('FirstName').value = '';
-            document.getElementById('LastName').value = '';
+            ['Username', 'Email', 'Password', 'FirstName', 'LastName'].forEach(function(id) {
+                document.getElementById(id).value = '';
+            });
         });
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} 
+}
