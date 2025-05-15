@@ -69,10 +69,23 @@ namespace Kutuphane.Controllers
             
             if (user != null && VerifyPassword(login_password, user.Password))
             {
-                // Set session or authentication cookie here
+                // Session'a kullanıcı bilgilerini kaydet
                 HttpContext.Session.SetString("UserId", user.UserId.ToString());
                 HttpContext.Session.SetString("Email", user.Email);
                 HttpContext.Session.SetString("Role", user.Role);
+
+                // Kalıcı cookie ayarla (her zaman hatırla)
+                CookieOptions cookieOptions = new CookieOptions
+                {
+                    Expires = DateTime.Now.AddDays(30),
+                    HttpOnly = true,
+                    IsEssential = true,
+                    SameSite = SameSiteMode.Lax
+                };
+
+                // Kullanıcı kimliğini şifreleyerek cookie'ye kaydet
+                string encryptedUserId = Convert.ToBase64String(Encoding.UTF8.GetBytes(user.UserId.ToString()));
+                Response.Cookies.Append("AuthUser", encryptedUserId, cookieOptions);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -84,7 +97,12 @@ namespace Kutuphane.Controllers
         // GET: User/Logout
         public IActionResult Logout()
         {
+            // Session'ı temizle
             HttpContext.Session.Clear();
+            
+            // Cookie'yi sil
+            Response.Cookies.Delete("AuthUser");
+            
             return RedirectToAction("Login");
         }
 
