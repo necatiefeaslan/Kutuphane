@@ -1,0 +1,70 @@
+@model Kutuphane.Models.Ogrenci
+
+@{
+    ViewData["Title"] = "Öğrenci Detay";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-info text-white rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-person-vcard me-2"></i>Öğrenci Detayları</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bold text-end">Ad:</dt>
+                        <dd class="col-sm-8">@Model.OgrenciAdi</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Soyad:</dt>
+                        <dd class="col-sm-8">@Model.OgrenciSoyadi</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Okul Numarası:</dt>
+                        <dd class="col-sm-8">@Model.OkulNumarasi</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Sınıf:</dt>
+                        <dd class="col-sm-8">@Model.Sinif?.SinifAdi</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Eklenme Tarihi:</dt>
+                        <dd class="col-sm-8">@Model.EklenmeTarihi.ToString("dd.MM.yyyy")</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Durum:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.Aktif)
+                            {
+                                <span class="badge bg-success">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Pasif</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Geri Dön
+                    </a>
+                    <div>
+                        <a asp-action="Guncelle" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Güncelle
+                        </a>
+                        <a asp-action="Sil" asp-route-id="@Model.Id" class="btn btn-danger ms-2">
+                            <i class="bi bi-trash"></i> Sil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: all 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+</style> 

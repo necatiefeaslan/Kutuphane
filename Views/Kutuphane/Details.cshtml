@@ -5,29 +5,45 @@
 }
 
 <div class="container mt-4">
-    <div class="card shadow rounded">
-        <div class="card-header bg-info text-white">
-            <h4 class="mb-0">📄 Sınıf Detayları</h4>
-        </div>
-        <div class="card-body">
-            <dl class="row mb-0">
-                <dt class="col-sm-3 fw-bold text-end">ID:</dt>
-                <dd class="col-sm-9">@Model.Id</dd>
-
-                <dt class="col-sm-3 fw-bold text-end">Sınıf Adı:</dt>
-                <dd class="col-sm-9">@Model.SinifAdi</dd>
-
-                <dt class="col-sm-3 fw-bold text-end">Açıklama:</dt>
-                <dd class="col-sm-9">@Model.Aciklama</dd>
-            </dl>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-            <a asp-action="Index" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Geri Dön
-            </a>
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
-                <i class="bi bi-pencil"></i> Güncelle
-            </a>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-info text-white rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-building me-2"></i>Sınıf Detayları</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 fw-bold text-end">Sınıf Adı:</dt>
+                        <dd class="col-sm-8">@Model.SinifAdi</dd>
+                        
+                        <dt class="col-sm-4 fw-bold text-end">Açıklama:</dt>
+                        <dd class="col-sm-8">@Model.Aciklama</dd>
+                    </dl>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Geri Dön
+                    </a>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Güncelle
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger ms-2">
+                            <i class="bi bi-trash"></i> Sil
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        transition: all 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+</style>

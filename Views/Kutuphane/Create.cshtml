@@ -16,9 +16,12 @@
                         <label asp-for="SinifAdi" class="form-label">Sınıf Adı</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="bi bi-people"></i></span>
-                            <input asp-for="SinifAdi" class="form-control form-control-lg" placeholder="Örn: 10-A" />
+                            <input asp-for="SinifAdi" class="form-control form-control-lg" placeholder="Örn: 9 veya 9-A" id="sinifAdi" />
                         </div>
                         <span asp-validation-for="SinifAdi" class="text-danger small"></span>
+                        <div class="form-text text-muted">
+                            Sınıf adı 1-12 arasında bir sayı olmalı ve opsiyonel olarak şube içermelidir (Örn: 9 veya 9-A).
+                        </div>
                     </div>
                     <div class="mb-4 position-relative">
                         <label asp-for="Aciklama" class="form-label">Açıklama</label>
@@ -54,3 +57,47 @@
         box-shadow: 0 0 24px 0 rgba(25,135,84,0.15);
     }
 </style>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sınıf adı inputu
+            var sinifAdiInput = document.getElementById('sinifAdi');
+            
+            // Form submit olduğunda
+            document.querySelector('form').addEventListener('submit', function(e) {
+                var sinifAdi = sinifAdiInput.value.trim();
+                
+                // Boş değilse doğrulama yap
+                if (sinifAdi) {
+                    var sinifNumarasi = sinifAdi;
+                    
+                    // Eğer şube içeriyorsa (örn: 9-A), rakam kısmını al
+                    if (sinifAdi.includes('-')) {
+                        sinifNumarasi = sinifAdi.split('-')[0];
+                    }
+                    
+                    // Geçerli bir sayı mı?
+                    var sayi = parseInt(sinifNumarasi);
+                    
+                    // 1-12 arasında değilse
+                    if (isNaN(sayi) || sayi < 1 || sayi > 12) {
+                        e.preventDefault(); // Formu gönderme
+                        
+                        // Hata mesajını göster
+                        var validationSpan = sinifAdiInput.parentElement.nextElementSibling;
+                        validationSpan.textContent = "Sınıf adı 1-12 arasında bir sayı olmalıdır.";
+                        
+                        // Input'a hata sınıfı ekle
+                        sinifAdiInput.classList.add('is-invalid');
+                    }
+                }
+            });
+            
+            // Input değiştiğinde hata sınıfını kaldır
+            sinifAdiInput.addEventListener('input', function() {
+                this.classList.remove('is-invalid');
+            });
+        });
+    </script>
+}

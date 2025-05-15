@@ -168,22 +168,52 @@
 </div>
 
 <script>
-    function resetFilters() {
-        // Tüm form alanlarını temizle
-        document.querySelectorAll('#filterForm select').forEach(select => {
-            select.value = '';
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Sayfa yüklendi, JavaScript çalışıyor.');
         
-        document.querySelectorAll('#filterForm input[type="text"]').forEach(input => {
-            input.value = '';
-        });
+        // Sınıf ID'si zaten varsa, o sınıfa ait öğrencileri yükle
+        var sinifId = document.getElementById('sinifId').value;
+        if (sinifId) {
+            console.log('Sınıf ID bulundu: ' + sinifId + ', öğrenciler yükleniyor...');
+            // Bu metodu çağır ama sayfayı yeniden yükleme
+            sinifDegistiIlkYukleme(sinifId);
+        }
+    });
+    
+    // İlk yükleme için özel bir fonksiyon (sayfa yüklenirken çalışır)
+    function sinifDegistiIlkYukleme(sinifId) {
+        var ogrenciSelect = document.getElementById('ogrenciId');
+        // Mevcut seçili öğrenciyi koru
+        var seciliOgrenciId = ogrenciSelect.value;
         
-        document.querySelectorAll('#filterForm input[type="checkbox"]').forEach(checkbox => {
-            checkbox.checked = false;
-        });
-        
-        // Formu gönder
-        document.getElementById('filterForm').submit();
+        // Öğrenci dropdownını temizle, seçili değeri koru
+        fetch('/Rapor/GetOgrencilerBySinif?sinifId=' + sinifId)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Öğrenciler yüklendi, öğrenci sayısı: ' + data.length);
+                
+                // Tümü seçeneğini koru
+                var tumOption = ogrenciSelect.querySelector('option[value=""]');
+                ogrenciSelect.innerHTML = '';
+                ogrenciSelect.appendChild(tumOption);
+                
+                // Öğrenci listesini doldur
+                data.forEach(ogrenci => {
+                    var option = document.createElement('option');
+                    option.value = ogrenci.id;
+                    option.text = ogrenci.ad;
+                    
+                    // Daha önce seçili olan öğrenciyi tekrar seç
+                    if (seciliOgrenciId && seciliOgrenciId == ogrenci.id) {
+                        option.selected = true;
+                    }
+                    
+                    ogrenciSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Öğrenci listesi yüklenirken hata oluştu:', error);
+            });
     }
 
     function sinifDegisti(sinifId) {
@@ -191,7 +221,7 @@
         var ogrenciSelect = document.getElementById('ogrenciId');
         ogrenciSelect.innerHTML = '<option value="">Tümü</option>';
         
-        // Eğer sınıf seçili değilse, formu gönder
+        // Eğer sınıf seçili değilse veya Tümü seçildiyse, form gönder
         if (!sinifId) {
             document.getElementById('filterForm').submit();
             return;
@@ -209,13 +239,32 @@
                     ogrenciSelect.appendChild(option);
                 });
                 
-                // Formu gönder
+                // Tabloyu güncellemek için formu otomatik gönder
                 document.getElementById('filterForm').submit();
             })
             .catch(error => {
                 console.error('Öğrenci listesi yüklenirken hata oluştu:', error);
+                // Hata durumunda da formu gönder
                 document.getElementById('filterForm').submit();
             });
+    }
+
+    function resetFilters() {
+        // Tüm form alanlarını temizle
+        document.querySelectorAll('#filterForm select').forEach(select => {
+            select.value = '';
+        });
+        
+        document.querySelectorAll('#filterForm input[type="text"]').forEach(input => {
+            input.value = '';
+        });
+        
+        document.querySelectorAll('#filterForm input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        
+        // Formu gönder
+        document.getElementById('filterForm').submit();
     }
 </script>
 

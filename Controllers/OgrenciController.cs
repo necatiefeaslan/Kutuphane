@@ -118,6 +118,18 @@ namespace Kutuphane.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Detay(int id)
+        {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var ogrenci = await _context.Ogrenciler
+                .Include(o => o.Sinif)
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
+            if (ogrenci == null) return NotFound();
+
+            return View(ogrenci);
+        }
     }
 
    
