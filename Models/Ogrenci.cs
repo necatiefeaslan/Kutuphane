@@ -14,5 +14,7 @@ namespace Kutuphane.Models
 
         public DateTime EklenmeTarihi { get; set; } = DateTime.Now;
         public int UserId { get; set; }
+        
+        public bool Aktif { get; set; } = true;
     }
 }

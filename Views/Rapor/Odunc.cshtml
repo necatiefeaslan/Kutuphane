@@ -6,17 +6,107 @@
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="fw-bold mb-0"><i class="bi bi-clipboard-data text-danger me-2"></i> Ödünç Kitap Raporu</h1>
+        <h1 class="fw-bold mb-0"><i class="bi bi-clipboard-data text-danger me-2"></i> Ödünç İşlemleri Raporu</h1>
         <button onclick="window.print()" class="btn btn-primary">
             <i class="bi bi-printer"></i> Yazdır
         </button>
     </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form asp-action="Odunc" method="get" id="filterForm">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="bi bi-mortarboard"></i> Sınıf:</label>
+                        <select name="sinifId" class="form-select" id="sinifId" onchange="sinifDegisti(this.value)">
+                            <option value="">Tümü</option>
+                            @foreach (var sinif in ViewBag.Siniflar)
+                            {
+                                if (ViewBag.SinifId != null && ViewBag.SinifId.ToString() == sinif.Value)
+                                {
+                                    <option value="@sinif.Value" selected>@sinif.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@sinif.Value">@sinif.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="bi bi-book"></i> Kitap:</label>
+                        <select name="kitapId" class="form-select" asp-items="ViewBag.Kitaplar" onchange="document.getElementById('filterForm').submit();">
+                            <option value="">Tümü</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="bi bi-person"></i> Öğrenci:</label>
+                        <select name="ogrenciId" class="form-select" id="ogrenciId" onchange="document.getElementById('filterForm').submit();">
+                            <option value="">Tümü</option>
+                            @foreach (var ogrenci in ViewBag.Ogrenciler)
+                            {
+                                if (ViewBag.OgrenciId != null && ViewBag.OgrenciId.ToString() == ogrenci.Value)
+                                {
+                                    <option value="@ogrenci.Value" selected>@ogrenci.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@ogrenci.Value">@ogrenci.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check me-4 mb-2">
+                                <input class="form-check-input" type="checkbox" name="enCokKitapAlan" value="true" id="enCokKitapAlan" @(ViewBag.EnCokKitapAlan == true ? "checked" : "") onchange="document.getElementById('filterForm').submit();">
+                                <label class="form-check-label" for="enCokKitapAlan">
+                                    <i class="bi bi-graph-up-arrow"></i> En Çok Kitap Alan
+                                </label>
+                            </div>
+                            <div class="form-check me-4 mb-2">
+                                <input class="form-check-input" type="checkbox" name="enCokKitapOkuyan" value="true" id="enCokKitapOkuyan" @(ViewBag.EnCokKitapOkuyan == true ? "checked" : "") onchange="document.getElementById('filterForm').submit();">
+                                <label class="form-check-label" for="enCokKitapOkuyan">
+                                    <i class="bi bi-book-half"></i> En Çok Kitap Okuyan
+                                </label>
+                            </div>
+                            <div class="form-check me-4 mb-2">
+                                <input class="form-check-input" type="checkbox" name="iadeGunuEnAzKalan" value="true" id="iadeGunuEnAzKalan" @(ViewBag.IadeGunuEnAzKalan == true ? "checked" : "") onchange="document.getElementById('filterForm').submit();">
+                                <label class="form-check-label" for="iadeGunuEnAzKalan">
+                                    <i class="bi bi-alarm"></i> İade Günü En Az Kalan
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="teslimEdilmeyenler" value="true" id="teslimEdilmeyenler" @(ViewBag.TeslimEdilmeyenler == true ? "checked" : "") onchange="document.getElementById('filterForm').submit();">
+                                <label class="form-check-label" for="teslimEdilmeyenler">
+                                    <i class="bi bi-exclamation-triangle"></i> Teslim Edilmeyenler
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="resetFilters()">
+                            <i class="bi bi-x-circle"></i> Filtreleri Temizle
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-bordered table-hover shadow-sm">
             <thead class="table-light">
                 <tr>
                     <th>Kitap Adı</th>
                     <th>Öğrenci</th>
+                    <th>Sınıf</th>
                     <th>Veriliş Tarihi</th>
                     <th>Son Teslim Tarihi</th>
                     <th>Kalan Gün</th>
@@ -37,6 +127,7 @@
     <tr class="@rowClass">
         <td>@item.KitapAdi</td>
         <td>@item.Ogrenci</td>
+        <td>@item.SinifAdi</td>
         <td>@item.VerilisTarihi.ToString("dd.MM.yyyy")</td>
         <td>@(item.SonTeslimTarihi.HasValue ? item.SonTeslimTarihi.Value.ToString("dd.MM.yyyy") : "-")</td>
         <td>
@@ -76,6 +167,58 @@
     </div>
 </div>
 
+<script>
+    function resetFilters() {
+        // Tüm form alanlarını temizle
+        document.querySelectorAll('#filterForm select').forEach(select => {
+            select.value = '';
+        });
+        
+        document.querySelectorAll('#filterForm input[type="text"]').forEach(input => {
+            input.value = '';
+        });
+        
+        document.querySelectorAll('#filterForm input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        
+        // Formu gönder
+        document.getElementById('filterForm').submit();
+    }
+
+    function sinifDegisti(sinifId) {
+        // Öğrenci dropdownını temizle
+        var ogrenciSelect = document.getElementById('ogrenciId');
+        ogrenciSelect.innerHTML = '<option value="">Tümü</option>';
+        
+        // Eğer sınıf seçili değilse, formu gönder
+        if (!sinifId) {
+            document.getElementById('filterForm').submit();
+            return;
+        }
+        
+        // AJAX ile seçilen sınıfa ait öğrencileri getir
+        fetch('/Rapor/GetOgrencilerBySinif?sinifId=' + sinifId)
+            .then(response => response.json())
+            .then(data => {
+                // Öğrenci listesini doldur
+                data.forEach(ogrenci => {
+                    var option = document.createElement('option');
+                    option.value = ogrenci.id;
+                    option.text = ogrenci.ad;
+                    ogrenciSelect.appendChild(option);
+                });
+                
+                // Formu gönder
+                document.getElementById('filterForm').submit();
+            })
+            .catch(error => {
+                console.error('Öğrenci listesi yüklenirken hata oluştu:', error);
+                document.getElementById('filterForm').submit();
+            });
+    }
+</script>
+
 <style>
     @@media print {
         body, html {
@@ -84,7 +227,7 @@
         nav.sidebar, .sidebar, .d-flex > nav, .d-flex > .sidebar {
             display: none !important;
         }
-        .btn, footer, header {
+        .btn, footer, header, .card {
             display: none !important;
         }
         .container {

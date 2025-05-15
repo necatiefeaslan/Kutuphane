@@ -21,7 +21,7 @@ namespace Kutuphane.Controllers
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var ogrenciler = await _context.Ogrenciler
                 .Include(o => o.Sinif)
-                .Where(o => o.UserId == userId)
+                .Where(o => o.UserId == userId && o.Aktif)
                 .ToListAsync();
             return View(ogrenciler);
         }
@@ -113,7 +113,8 @@ namespace Kutuphane.Controllers
             var ogrenci = await _context.Ogrenciler.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
             if (ogrenci == null) return NotFound();
 
-            _context.Ogrenciler.Remove(ogrenci);
+            ogrenci.Aktif = false;
+            _context.Ogrenciler.Update(ogrenci);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
