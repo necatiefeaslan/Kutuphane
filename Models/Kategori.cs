@@ -14,6 +14,9 @@ namespace Kutuphane.Models
         [Display(Name = "Açıklama")]
         public string? Aciklama { get; set; }
 
+        [Display(Name = "Aktif")]
+        public bool Aktif { get; set; } = true;
+
         // Navigation property
         public virtual ICollection<Kitap>? Kitaplar { get; set; }
         public int UserId { get; set; }

@@ -20,7 +20,7 @@ namespace Kutuphane.Controllers
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var kitaplar = await _context.Kitaplar
-                .Where(k => k.UserId == userId)
+                .Where(k => k.UserId == userId && k.Aktif == true)
                 .Include(k => k.Kategori)
                 .ToListAsync();
             return View(kitaplar);
@@ -30,7 +30,7 @@ namespace Kutuphane.Controllers
         public IActionResult Create()
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi");
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId && k.Aktif), "Id", "KategoriAdi");
             return View();
         }
 
@@ -47,7 +47,7 @@ namespace Kutuphane.Controllers
                 return RedirectToAction(nameof(Index));
             }
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId && k.Aktif), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -65,7 +65,7 @@ namespace Kutuphane.Controllers
             {
                 return NotFound();
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId && k.Aktif), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -107,7 +107,7 @@ namespace Kutuphane.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId), "Id", "KategoriAdi", kitap.KategoriId);
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler.Where(k => k.UserId == userId && k.Aktif), "Id", "KategoriAdi", kitap.KategoriId);
             return View(kitap);
         }
 
@@ -140,7 +140,8 @@ namespace Kutuphane.Controllers
             var kitap = await _context.Kitaplar.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kitap != null)
             {
-                _context.Kitaplar.Remove(kitap);
+                kitap.Aktif = false;
+                _context.Update(kitap);
             }
             
             await _context.SaveChangesAsync();

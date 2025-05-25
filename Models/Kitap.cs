@@ -34,6 +34,9 @@ namespace Kutuphane.Models
 
         public int UserId { get; set; }
 
+        [Display(Name = "Aktif")]
+        public bool Aktif { get; set; } = true;
+
         public virtual ICollection<Odunc>? Oduncler { get; set; }
     }
 } 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/Kutuphane.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        body { min-height: 100vh; }
+        body { min-height: 100vh; display: flex; flex-direction: column; }
         .sidebar {
             min-height: 100vh;
             background: #f8f9fa;
@@ -47,13 +47,19 @@
             color: #333;
             margin-bottom: 0.5rem;
         }
+        footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
         @@media (max-width: 991.98px) {
             .sidebar { min-height: auto; }
         }
     </style>
 </head>
 <body>
-    <div class="d-flex">
+    <div class="d-flex flex-grow-1">
         @if (Context.Session.GetString("UserId") != null)
         {
             <nav class="sidebar d-flex flex-column p-3" style="width: 250px;">
@@ -96,10 +102,16 @@
                 </div>
             </nav>
         }
-        <div class="flex-grow-1">
-            <main role="main" class="pb-3">
+        <div class="flex-grow-1 d-flex flex-column">
+            <main role="main" class="pb-3 flex-grow-1">
                 @RenderBody()
             </main>
+            
+            <footer class="text-center">
+                <div class="container">
+                    <p class="mb-0 fw-bold">Necati Efe Aslan - 148 - 11-B</p>
+                </div>
+            </footer>
         </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

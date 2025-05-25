@@ -30,6 +30,9 @@ namespace Kutuphane.Models
         [Display(Name = "Durum")]
         public bool IadeEdildi { get; set; } // false: ödünç verildi, true: iade edildi
 
+        [Display(Name = "Aktif")]
+        public bool Aktif { get; set; } = true;
+
         public int UserId { get; set; }
     }
 } 

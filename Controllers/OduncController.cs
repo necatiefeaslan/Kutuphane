@@ -22,7 +22,7 @@ namespace Kutuphane.Controllers
             var oduncler = await _context.Oduncler
                 .Include(o => o.Kitap)
                 .Include(o => o.Ogrenci)
-                .Where(o => o.UserId == userId)
+                .Where(o => o.UserId == userId && o.Aktif)
                 .ToListAsync();
             return View(oduncler);
         }
@@ -42,6 +42,36 @@ namespace Kutuphane.Controllers
             return View();
         }
 
+        // GET: Odunc/AraKitaplar
+        [HttpGet]
+        public JsonResult AraKitaplar(string term)
+        {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var kitaplar = _context.Kitaplar
+                .Where(k => k.UserId == userId && k.KitapAdi.Contains(term) && k.Aktif)
+                .Select(k => new { id = k.Id, text = k.KitapAdi })
+                .ToList();
+            
+            return Json(kitaplar);
+        }
+
+        // GET: Odunc/AraOgrenciler
+        [HttpGet]
+        public JsonResult AraOgrenciler(string term)
+        {
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            var ogrenciler = _context.Ogrenciler
+                .Where(o => o.UserId == userId && o.Aktif && 
+                    (o.OgrenciAdi.Contains(term) || o.OgrenciSoyadi.Contains(term)))
+                .Select(o => new { 
+                    id = o.Id, 
+                    text = o.OgrenciAdi + " " + o.OgrenciSoyadi 
+                })
+                .ToList();
+            
+            return Json(ogrenciler);
+        }
+
         // POST: Odunc/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,6 +81,7 @@ namespace Kutuphane.Controllers
             {
                 odunc.OduncAlmaTarihi = DateTime.Now;
                 odunc.IadeEdildi = false;
+                odunc.Aktif = true;
                 odunc.UserId = int.Parse(HttpContext.Session.GetString("UserId"));
                 _context.Add(odunc);
                 await _context.SaveChangesAsync();
@@ -123,7 +154,9 @@ namespace Kutuphane.Controllers
             var odunc = await _context.Oduncler.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
             if (odunc != null)
             {
-                _context.Oduncler.Remove(odunc);
+                // Soft delete - ödünç kaydını silmek yerine aktif alanını false yap
+                odunc.Aktif = false;
+                _context.Update(odunc);
                 await _context.SaveChangesAsync();
             }
             if (!string.IsNullOrEmpty(returnUrl))

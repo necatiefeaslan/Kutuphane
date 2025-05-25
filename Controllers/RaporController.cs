@@ -17,7 +17,8 @@ namespace Kutuphane.Controllers
 
         // GET: Rapor/Odunc
         public async Task<IActionResult> Odunc(int? sinifId, int? kitapId, int? ogrenciId, bool? enCokKitapAlan = null, 
-            bool? enCokKitapOkuyan = null, bool? iadeGunuEnAzKalan = null, bool? teslimEdilmeyenler = null)
+            bool? enCokKitapOkuyan = null, bool? iadeGunuEnAzKalan = null, bool? teslimEdilmeyenler = null,
+            DateTime? baslangicTarihi = null, DateTime? bitisTarihi = null)
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var query = _context.Oduncler
@@ -42,6 +43,18 @@ namespace Kutuphane.Controllers
             if (ogrenciId.HasValue && ogrenciId.Value > 0)
             {
                 query = query.Where(o => o.OgrenciId == ogrenciId.Value);
+            }
+
+            // Tarih filtreleme - Başlangıç tarihi
+            if (baslangicTarihi.HasValue)
+            {
+                query = query.Where(o => o.OduncAlmaTarihi >= baslangicTarihi.Value.Date);
+            }
+
+            // Tarih filtreleme - Bitiş tarihi
+            if (bitisTarihi.HasValue)
+            {
+                query = query.Where(o => o.OduncAlmaTarihi <= bitisTarihi.Value.Date.AddDays(1).AddSeconds(-1));
             }
 
             // İade edilmemiş kitaplar
@@ -112,11 +125,11 @@ namespace Kutuphane.Controllers
             }).ToList();
 
             // ViewBag'e filtreleme için gerekli seçenekleri ekliyoruz
-            ViewBag.Siniflar = new SelectList(_context.Siniflar.Where(s => s.UserId == userId), "Id", "SinifAdi");
-            ViewBag.Kitaplar = new SelectList(_context.Kitaplar.Where(k => k.UserId == userId), "Id", "KitapAdi");
+            ViewBag.Siniflar = new SelectList(_context.Siniflar.Where(s => s.UserId == userId && s.Aktif), "Id", "SinifAdi");
+            ViewBag.Kitaplar = new SelectList(_context.Kitaplar.Where(k => k.UserId == userId && k.Aktif), "Id", "KitapAdi");
             ViewBag.Ogrenciler = new SelectList(
                 _context.Ogrenciler
-                    .Where(o => o.UserId == userId)
+                    .Where(o => o.UserId == userId && o.Aktif)
                     .Select(o => new { 
                         Id = o.Id, 
                         TamAd = o.OgrenciAdi + " " + o.OgrenciSoyadi + (o.Aktif ? "" : " (Pasif)") 
@@ -132,6 +145,8 @@ namespace Kutuphane.Controllers
             ViewBag.EnCokKitapOkuyan = enCokKitapOkuyan;
             ViewBag.IadeGunuEnAzKalan = iadeGunuEnAzKalan;
             ViewBag.TeslimEdilmeyenler = teslimEdilmeyenler;
+            ViewBag.BaslangicTarihi = baslangicTarihi?.ToString("yyyy-MM-dd");
+            ViewBag.BitisTarihi = bitisTarihi?.ToString("yyyy-MM-dd");
 
             return View(rapor);
         }
@@ -142,7 +157,7 @@ namespace Kutuphane.Controllers
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             var ogrenciler = _context.Ogrenciler
-                .Where(o => o.UserId == userId && (sinifId == 0 || o.SinifId == sinifId))
+                .Where(o => o.UserId == userId && o.Aktif && (sinifId == 0 || o.SinifId == sinifId))
                 .Select(o => new { 
                     Id = o.Id, 
                     Ad = o.OgrenciAdi + " " + o.OgrenciSoyadi + (o.Aktif ? "" : " (Pasif)") 

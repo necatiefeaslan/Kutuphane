@@ -30,7 +30,7 @@ namespace Kutuphane.Controllers
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             ViewBag.Siniflar = new SelectList(
-                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                await _context.Siniflar.Where(s => s.UserId == userId && s.Aktif).ToListAsync(),
                 "Id", "SinifAdi"
             );
             return View();
@@ -49,7 +49,7 @@ namespace Kutuphane.Controllers
             }
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
             ViewBag.Siniflar = new SelectList(
-                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                await _context.Siniflar.Where(s => s.UserId == userId && s.Aktif).ToListAsync(),
                 "Id", "SinifAdi"
             );
             return View(ogrenci);
@@ -64,7 +64,7 @@ namespace Kutuphane.Controllers
             if (ogrenci == null) return NotFound();
 
             ViewBag.Siniflar = new SelectList(
-                await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                await _context.Siniflar.Where(s => s.UserId == userId && s.Aktif).ToListAsync(),
                 "Id", "SinifAdi"
             );
             return View(ogrenci);
@@ -79,7 +79,7 @@ namespace Kutuphane.Controllers
             {
                 var userId = int.Parse(HttpContext.Session.GetString("UserId"));
                 ViewBag.Siniflar = new SelectList(
-                    await _context.Siniflar.Where(s => s.UserId == userId).ToListAsync(),
+                    await _context.Siniflar.Where(s => s.UserId == userId && s.Aktif).ToListAsync(),
                     "Id", "SinifAdi"
                 );
                 return View(ogrenci);

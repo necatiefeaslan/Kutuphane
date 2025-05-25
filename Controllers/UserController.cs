@@ -187,5 +187,52 @@ namespace Kutuphane.Controllers
         {
             return HashPassword(inputPassword) == hashedPassword;
         }
+
+        // GET: User/CreateUser
+        public IActionResult CreateUser()
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            return View();
+        }
+
+        // POST: User/CreateUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateUser(User user)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+
+            if (ModelState.IsValid)
+            {
+                // Check if username already exists
+                if (await _context.Users.AnyAsync(u => u.Username == user.Username))
+                {
+                    ModelState.AddModelError("Username", "Bu kullanıcı adı zaten kullanılıyor.");
+                    return View(user);
+                }
+
+                // Hash password
+                user.Password = HashPassword(user.Password);
+
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Yeni kullanıcı başarıyla oluşturuldu.";
+                return RedirectToAction("Profile");
+            }
+            return View(user);
+        }
     }
 } 

@@ -19,7 +19,7 @@ namespace Kutuphane.Controllers
         public IActionResult Index()
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
-            var Siniflar = _context.Siniflar.Where(s => s.UserId == userId).ToList();
+            var Siniflar = _context.Siniflar.Where(s => s.UserId == userId && s.Aktif == true).ToList();
             return View(Siniflar);
         }
 
@@ -105,7 +105,9 @@ namespace Kutuphane.Controllers
             var Sinif = _context.Siniflar.FirstOrDefault(k => k.Id == id && k.UserId == userId);
             if (Sinif != null)
             {
-                _context.Siniflar.Remove(Sinif);
+                // Soft delete - sınıfı gerçekten silmek yerine Aktif alanını false yap
+                Sinif.Aktif = false;
+                _context.Update(Sinif);
                 _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));

@@ -18,7 +18,7 @@ namespace Kutuphane.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = int.Parse(HttpContext.Session.GetString("UserId"));
-            return View(await _context.Kategoriler.Where(k => k.UserId == userId).ToListAsync());
+            return View(await _context.Kategoriler.Where(k => k.UserId == userId && k.Aktif == true).ToListAsync());
         }
 
         // GET: Kategori/Create
@@ -122,7 +122,8 @@ namespace Kutuphane.Controllers
             var kategori = await _context.Kategoriler.FirstOrDefaultAsync(k => k.Id == id && k.UserId == userId);
             if (kategori != null)
             {
-                _context.Kategoriler.Remove(kategori);
+                kategori.Aktif = false;
+                _context.Update(kategori);
             }
             
             await _context.SaveChangesAsync();

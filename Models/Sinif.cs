@@ -17,6 +17,9 @@ namespace Kutuphane.Models
         [Display(Name = "Açıklama")]
         public string? Aciklama { get; set; }
 
+        [Display(Name = "Aktif")]
+        public bool Aktif { get; set; } = true;
+
         public virtual ICollection<Ogrenci>? Ogrenciler { get; set; }
         public int UserId { get; set; }
     }
