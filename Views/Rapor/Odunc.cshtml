@@ -273,6 +273,12 @@
         document.querySelectorAll('#filterForm input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = false;
         });
+
+        document.querySelectorAll('#filterForm input[type="date"]').forEach(input => {
+            input.value = '';
+        });
+
+        
         
         // Formu gönder
         document.getElementById('filterForm').submit();
