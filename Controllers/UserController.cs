@@ -199,7 +199,7 @@ namespace Kutuphane.Controllers
             if (HttpContext.Session.GetString("Role") != "Admin")
                 return RedirectToAction("Index", "Home");
             
-            // Boş bir User modeli oluştur, böylece formda hiçbir alan dolu gelmeyecek
+            // Boş bir User modeli oluşturup View'a geçiyoruz
             var emptyUser = new User { 
                 Username = "",
                 Email = "",
@@ -243,6 +243,174 @@ namespace Kutuphane.Controllers
                 return RedirectToAction("Profile");
             }
             return View(user);
+        }
+
+        // GET: User/ListUsers - Sadece Admin rolü için
+        public async Task<IActionResult> ListUsers()
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Sadece Admin rolündeki kullanıcılar erişebilir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            // Tüm kullanıcıları getir
+            var users = await _context.Users.ToListAsync();
+            return View(users);
+        }
+
+        // GET: User/EditUser/5
+        public async Task<IActionResult> EditUser(int id)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+            
+            // Şifre gösterilmemeli
+            user.Password = "";
+            
+            return View(user);
+        }
+        
+        // POST: User/EditUser/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUser(int id, User user)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            if (id != user.UserId)
+                return NotFound();
+            
+            if (ModelState.IsValid)
+            {
+                var existingUser = await _context.Users.FindAsync(id);
+                if (existingUser == null)
+                    return NotFound();
+                
+                // Mevcut bilgileri güncelle
+                existingUser.Username = user.Username;
+                existingUser.FirstName = user.FirstName;
+                existingUser.LastName = user.LastName;
+                existingUser.Email = user.Email;
+                existingUser.Role = user.Role;
+                
+                // Şifre girilmişse şifreyi de güncelle
+                if (!string.IsNullOrEmpty(user.Password))
+                {
+                    existingUser.Password = HashPassword(user.Password);
+                }
+                
+                try
+                {
+                    _context.Update(existingUser);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Kullanıcı başarıyla güncellendi.";
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.UserId))
+                        return NotFound();
+                    else
+                        throw;
+                }
+                
+                return RedirectToAction("ListUsers");
+            }
+            
+            return View(user);
+        }
+        
+        // GET: User/DeleteUser/5
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+            
+            return View(user);
+        }
+        
+        // POST: User/DeleteUserConfirmed/5
+        [HttpPost, ActionName("DeleteUserConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUserConfirmed(int id)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            // Giriş yapmış kullanıcının ID'sini al
+            int currentUserId = int.Parse(HttpContext.Session.GetString("UserId"));
+            
+            // Kullanıcıyı bul
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+            
+            // Kullanıcı kendini silmeye çalışıyorsa engelle
+            if (user.UserId == currentUserId)
+            {
+                TempData["ErrorMessage"] = "Kendi hesabınızı silemezsiniz!";
+                return RedirectToAction("ListUsers");
+            }
+            
+            // Kullanıcıyı sil
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            
+            TempData["SuccessMessage"] = "Kullanıcı başarıyla silindi.";
+            return RedirectToAction("ListUsers");
+        }
+        
+        // GET: User/Dashboard
+        public async Task<IActionResult> Dashboard()
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            // İstatistikleri hesapla
+            var userId = int.Parse(HttpContext.Session.GetString("UserId"));
+            
+            ViewBag.KullaniciSayisi = await _context.Users.CountAsync();
+            ViewBag.KitapSayisi = await _context.Kitaplar.Where(k => k.UserId == userId && k.Aktif).CountAsync();
+            ViewBag.OgrenciSayisi = await _context.Ogrenciler.Where(o => o.UserId == userId && o.Aktif).CountAsync();
+            ViewBag.AktifOduncSayisi = await _context.Oduncler.Where(o => o.UserId == userId && !o.IadeEdildi && o.Aktif).CountAsync();
+            
+            return View();
         }
     }
 } 

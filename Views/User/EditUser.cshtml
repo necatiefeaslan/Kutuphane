@@ -1,8 +1,7 @@
 @model Kutuphane.Models.User
 
 @{
-    ViewData["Title"] = "Yeni Kullanıcı Oluştur";
-    // Model salt okunur olduğu için doğrudan atama yapamayız
+    ViewData["Title"] = "Kullanıcı Düzenle";
 }
 
 <div class="container py-5">
@@ -10,9 +9,12 @@
         <div class="col-md-8">
             <div class="card shadow border-0 rounded-4">
                 <div class="card-body p-5">
-                    <h2 class="fw-bold text-success mb-4"><i class="bi bi-person-plus-fill me-2"></i> Yeni Kullanıcı Oluştur</h2>
+                    <h2 class="fw-bold text-primary mb-4"><i class="bi bi-person-gear me-2"></i> Kullanıcı Düzenle</h2>
 
-                    <form asp-action="CreateUser" method="post" id="createUserForm">
+                    <form asp-action="EditUser" method="post">
+                        <input type="hidden" asp-for="UserId" />
+                        <input type="hidden" asp-for="CreatedAt" />
+                        
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <div class="row g-4">
@@ -20,7 +22,7 @@
                                 <label asp-for="FirstName" class="form-label">Ad</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
-                                    <input asp-for="FirstName" class="form-control form-control-lg" value="" />
+                                    <input asp-for="FirstName" class="form-control form-control-lg" />
                                 </div>
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
@@ -28,7 +30,7 @@
                                 <label asp-for="LastName" class="form-label">Soyad</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
-                                    <input asp-for="LastName" class="form-control form-control-lg" value="" />
+                                    <input asp-for="LastName" class="form-control form-control-lg" />
                                 </div>
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
@@ -36,7 +38,7 @@
                                 <label asp-for="Username" class="form-label">Kullanıcı Adı</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person-badge"></i></span>
-                                    <input asp-for="Username" class="form-control form-control-lg" value="" />
+                                    <input asp-for="Username" class="form-control form-control-lg" />
                                 </div>
                                 <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
@@ -44,15 +46,15 @@
                                 <label asp-for="Email" class="form-label">E-posta</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
-                                    <input asp-for="Email" class="form-control form-control-lg" value="" />
+                                    <input asp-for="Email" class="form-control form-control-lg" />
                                 </div>
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="Password" class="form-label">Şifre</label>
+                                <label asp-for="Password" class="form-label">Şifre (Değiştirmek istemiyorsanız boş bırakın)</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
-                                    <input asp-for="Password" class="form-control form-control-lg" type="password" value="" />
+                                    <input asp-for="Password" class="form-control form-control-lg" type="password" />
                                 </div>
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
@@ -61,7 +63,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person-gear"></i></span>
                                     <select asp-for="Role" class="form-select form-select-lg">
-                                        <option value="User" selected>Kullanıcı</option>
+                                        <option value="User">Kullanıcı</option>
                                         <option value="Admin">Yönetici</option>
                                     </select>
                                 </div>
@@ -70,11 +72,11 @@
                         </div>
 
                         <div class="mt-5 d-flex gap-3">
-                            <button type="submit" class="btn btn-success btn-lg w-100">
-                                <i class="bi bi-person-plus me-2"></i> Kullanıcı Oluştur
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="bi bi-check-circle me-2"></i> Değişiklikleri Kaydet
                             </button>
-                            <a asp-controller="User" asp-action="Profile" class="btn btn-outline-secondary btn-lg w-100">
-                                <i class="bi bi-arrow-left"></i> Profile Dön
+                            <a asp-controller="User" asp-action="ListUsers" class="btn btn-outline-secondary btn-lg w-100">
+                                <i class="bi bi-arrow-left"></i> Listeye Dön
                             </a>
                         </div>
                     </form>
@@ -86,22 +88,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        // Sayfa yüklendiğinde form sıfırla
-        document.addEventListener('DOMContentLoaded', function() {
-            // Form alanlarını temizle
-            document.getElementById('createUserForm').reset();
-            
-            // Şifre alanını özellikle boşalt
-            document.querySelector('input[type="password"]').value = '';
-            
-            // Diğer tüm alanları da boşalt
-            document.querySelectorAll('#createUserForm input:not([type="hidden"])').forEach(function(input) {
-                input.value = '';
-            });
-            
-            // Role seçimini Kullanıcı olarak ayarla
-            document.querySelector('select[name="Role"]').value = 'User';
-        });
-    </script>
 } 

@@ -87,6 +87,16 @@
                 <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Rapor" ? "active" : "")" asp-area="" asp-controller="Rapor" asp-action="Odunc">
                     <i class="bi bi-clipboard-data"></i> Raporlar
                 </a>
+                
+                @if (Context.Session.GetString("Role") == "Admin")
+                {
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" && ViewContext.RouteData.Values["action"]?.ToString() == "Dashboard" ? "active" : "")" asp-area="" asp-controller="User" asp-action="Dashboard">
+                        <i class="bi bi-speedometer2 text-danger"></i> Admin Paneli
+                    </a>
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" && ViewContext.RouteData.Values["action"]?.ToString() == "ListUsers" ? "active" : "")" asp-area="" asp-controller="User" asp-action="ListUsers">
+                        <i class="bi bi-people-fill text-danger"></i> Kullanıcı Yönetimi
+                    </a>
+                }
                 <div class="user-info">
                     <div class="username">
                         <i class="bi bi-person-circle"></i> @ViewBag.FullName
