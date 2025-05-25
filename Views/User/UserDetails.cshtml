@@ -1,0 +1,265 @@
+@model Kutuphane.Models.User
+
+@{
+    ViewData["Title"] = "Kullanıcı Detayları";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold"><i class="bi bi-person-badge text-primary me-2"></i> Kullanıcı Detayları</h1>
+        <div>
+            <a asp-controller="User" asp-action="EditUser" asp-route-id="@Model.UserId" class="btn btn-primary">
+                <i class="bi bi-pencil me-1"></i> Düzenle
+            </a>
+            <a asp-controller="User" asp-action="ListUsers" class="btn btn-outline-secondary ms-2">
+                <i class="bi bi-arrow-left me-1"></i> Listeye Dön
+            </a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle bg-primary bg-opacity-10 rounded-circle p-4 mx-auto mb-3" style="width: 100px; height: 100px;">
+                            <i class="bi bi-person-fill fs-1 text-primary"></i>
+                        </div>
+                        <h3 class="fw-bold">@Model.FirstName @Model.LastName</h3>
+                        <p class="text-muted mb-0">@@@Model.Username</p>
+                        <div class="mt-2">
+                            @if (Model.Role == "Admin")
+                            {
+                                <span class="badge bg-danger rounded-pill px-3 py-2">Yönetici</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary rounded-pill px-3 py-2">Kullanıcı</span>
+                            }
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4"><i class="bi bi-envelope text-muted me-2"></i> E-posta</dt>
+                        <dd class="col-sm-8">@Model.Email</dd>
+                        
+                        <dt class="col-sm-4"><i class="bi bi-calendar-date text-muted me-2"></i> Kayıt</dt>
+                        <dd class="col-sm-8">@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-4"><i class="bi bi-graph-up-arrow"></i> İstatistikler</h4>
+                    
+                    <div class="row mb-4">
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-3">
+                                    <div class="bg-success bg-opacity-10 p-2 rounded-circle mx-auto mb-3" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-book-half fs-4 text-success"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-1">@ViewBag.KitapSayisi</h5>
+                                    <small class="text-muted">Kitap</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-3">
+                                    <div class="bg-info bg-opacity-10 p-2 rounded-circle mx-auto mb-3" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-people-fill fs-4 text-info"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-1">@ViewBag.OgrenciSayisi</h5>
+                                    <small class="text-muted">Öğrenci</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-3">
+                                    <div class="bg-warning bg-opacity-10 p-2 rounded-circle mx-auto mb-3" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-journal-arrow-up fs-4 text-warning"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-1">@ViewBag.AktifOduncSayisi</h5>
+                                    <small class="text-muted">Aktif Ödünç</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-3">
+                                    <div class="bg-primary bg-opacity-10 p-2 rounded-circle mx-auto mb-3" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-clipboard-data fs-4 text-primary"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-1">@ViewBag.ToplamOduncSayisi</h5>
+                                    <small class="text-muted">Toplam Ödünç</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="nav nav-tabs mb-4" id="userDetailTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="odunc-tab" data-bs-toggle="tab" data-bs-target="#odunc-tab-pane" type="button" role="tab">
+                                <i class="bi bi-journal-arrow-up"></i> Son Ödünçler
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="kitap-tab" data-bs-toggle="tab" data-bs-target="#kitap-tab-pane" type="button" role="tab">
+                                <i class="bi bi-book-half"></i> Son Kitaplar
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ogrenci-tab" data-bs-toggle="tab" data-bs-target="#ogrenci-tab-pane" type="button" role="tab">
+                                <i class="bi bi-people-fill"></i> Son Öğrenciler
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="userDetailTabsContent">
+                        <div class="tab-pane fade show active" id="odunc-tab-pane" role="tabpanel" tabindex="0">
+                            @if (ViewBag.SonOduncler != null && ViewBag.SonOduncler.Count > 0)
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Kitap</th>
+                                                <th>Öğrenci</th>
+                                                <th>Tarih</th>
+                                                <th>Durum</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var odunc in ViewBag.SonOduncler)
+                                            {
+                                                <tr>
+                                                    <td>@odunc.Kitap.KitapAdi</td>
+                                                    <td>@odunc.Ogrenci.OgrenciAdi @odunc.Ogrenci.OgrenciSoyadi</td>
+                                                    <td>@odunc.OduncAlmaTarihi.ToString("dd.MM.yyyy")</td>
+                                                    <td>
+                                                        @if (odunc.IadeEdildi)
+                                                        {
+                                                            <span class="badge bg-success">İade Edildi</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge bg-warning">Ödünçte</span>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center p-4">
+                                    <i class="bi bi-exclamation-circle text-muted fs-1"></i>
+                                    <p class="mt-3 text-muted">Henüz ödünç işlemi bulunmuyor.</p>
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="tab-pane fade" id="kitap-tab-pane" role="tabpanel" tabindex="0">
+                            @if (ViewBag.SonKitaplar != null && ViewBag.SonKitaplar.Count > 0)
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Kitap Adı</th>
+                                                <th>Yazar</th>
+                                                <th>Kategori</th>
+                                                <th>Stok</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var kitap in ViewBag.SonKitaplar)
+                                            {
+                                                <tr>
+                                                    <td>@kitap.KitapAdi</td>
+                                                    <td>@kitap.Yazar</td>
+                                                    <td>@kitap.Kategori.KategoriAdi</td>
+                                                    <td>@kitap.StokAdedi</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center p-4">
+                                    <i class="bi bi-exclamation-circle text-muted fs-1"></i>
+                                    <p class="mt-3 text-muted">Henüz kitap bulunmuyor.</p>
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="tab-pane fade" id="ogrenci-tab-pane" role="tabpanel" tabindex="0">
+                            @if (ViewBag.SonOgrenciler != null && ViewBag.SonOgrenciler.Count > 0)
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Öğrenci Adı</th>
+                                                <th>Öğrenci Soyadı</th>
+                                                <th>Sınıf</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ogrenci in ViewBag.SonOgrenciler)
+                                            {
+                                                <tr>
+                                                    <td>@ogrenci.OgrenciAdi</td>
+                                                    <td>@ogrenci.OgrenciSoyadi</td>
+                                                    <td>@ogrenci.Sinif.SinifAdi</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center p-4">
+                                    <i class="bi bi-exclamation-circle text-muted fs-1"></i>
+                                    <p class="mt-3 text-muted">Henüz öğrenci bulunmuyor.</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #userDetailTabs .nav-link {
+        color: #6c757d;
+        border: none;
+        padding: 0.75rem 1rem;
+    }
+    
+    #userDetailTabs .nav-link.active {
+        color: #0d6efd;
+        border-bottom: 2px solid #0d6efd;
+        background: transparent;
+    }
+</style> 

@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Yeni Kullanıcı Oluştur";
-    // Model salt okunur olduğu için doğrudan atama yapamayız
 }
 
 <div class="container py-5">
@@ -17,55 +16,55 @@
 
                         <div class="row g-4">
                             <div class="col-md-6">
-                                <label asp-for="FirstName" class="form-label">Ad</label>
+                                <label for="FirstName" class="form-label">Ad</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
-                                    <input asp-for="FirstName" class="form-control form-control-lg" value="" />
+                                    <input name="FirstName" id="FirstName" class="form-control form-control-lg" />
                                 </div>
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="LastName" class="form-label">Soyad</label>
+                                <label for="LastName" class="form-label">Soyad</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
-                                    <input asp-for="LastName" class="form-control form-control-lg" value="" />
+                                    <input name="LastName" id="LastName" class="form-control form-control-lg" />
                                 </div>
-                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="Username" class="form-label">Kullanıcı Adı</label>
+                                <label for="Username" class="form-label">Kullanıcı Adı</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person-badge"></i></span>
-                                    <input asp-for="Username" class="form-control form-control-lg" value="" />
+                                    <input name="Username" id="Username" class="form-control form-control-lg" />
                                 </div>
-                                <span asp-validation-for="Username" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="Email" class="form-label">E-posta</label>
+                                <label for="Email" class="form-label">E-posta</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
-                                    <input asp-for="Email" class="form-control form-control-lg" value="" />
+                                    <input name="Email" id="Email" class="form-control form-control-lg" />
                                 </div>
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="Password" class="form-label">Şifre</label>
+                                <label for="Password" class="form-label">Şifre</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
-                                    <input asp-for="Password" class="form-control form-control-lg" type="password" value="" />
+                                    <input name="Password" id="Password" class="form-control form-control-lg" type="password" />
                                 </div>
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="Role" class="form-label">Rol</label>
+                                <label for="Role" class="form-label">Rol</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-person-gear"></i></span>
-                                    <select asp-for="Role" class="form-select form-select-lg">
+                                    <select name="Role" id="Role" class="form-select form-select-lg">
                                         <option value="User" selected>Kullanıcı</option>
                                         <option value="Admin">Yönetici</option>
                                     </select>
                                 </div>
-                                <span asp-validation-for="Role" class="text-danger"></span>
+                                <span class="text-danger"></span>
                             </div>
                         </div>
 
@@ -86,22 +85,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        // Sayfa yüklendiğinde form sıfırla
-        document.addEventListener('DOMContentLoaded', function() {
-            // Form alanlarını temizle
-            document.getElementById('createUserForm').reset();
-            
-            // Şifre alanını özellikle boşalt
-            document.querySelector('input[type="password"]').value = '';
-            
-            // Diğer tüm alanları da boşalt
-            document.querySelectorAll('#createUserForm input:not([type="hidden"])').forEach(function(input) {
-                input.value = '';
-            });
-            
-            // Role seçimini Kullanıcı olarak ayarla
-            document.querySelector('select[name="Role"]').value = 'User';
-        });
-    </script>
 } 

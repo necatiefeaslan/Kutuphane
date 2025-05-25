@@ -412,5 +412,65 @@ namespace Kutuphane.Controllers
             
             return View();
         }
+        
+        // GET: User/UserDetails/5
+        public async Task<IActionResult> UserDetails(int id)
+        {
+            // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+            if (HttpContext.Session.GetString("UserId") == null)
+                return RedirectToAction("Login");
+            
+            // Kullanıcı admin değilse anasayfaya yönlendir
+            if (HttpContext.Session.GetString("Role") != "Admin")
+                return RedirectToAction("Index", "Home");
+            
+            // Kullanıcıyı bul
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+            
+            // Bu kullanıcının tüm verilerini toplayacağız
+            var kitapSayisi = await _context.Kitaplar.Where(k => k.UserId == id && k.Aktif).CountAsync();
+            var ogrenciSayisi = await _context.Ogrenciler.Where(o => o.UserId == id && o.Aktif).CountAsync();
+            var aktifOduncSayisi = await _context.Oduncler.Where(o => o.UserId == id && !o.IadeEdildi && o.Aktif).CountAsync();
+            var toplamOduncSayisi = await _context.Oduncler.Where(o => o.UserId == id && o.Aktif).CountAsync();
+            
+            // Son 5 ödünç işlemi
+            var sonOduncler = await _context.Oduncler
+                .Where(o => o.UserId == id && o.Aktif)
+                .Include(o => o.Kitap)
+                .Include(o => o.Ogrenci)
+                .OrderByDescending(o => o.OduncAlmaTarihi)
+                .Take(5)
+                .ToListAsync();
+            
+            // Son 5 kitap
+            var sonKitaplar = await _context.Kitaplar
+                .Where(k => k.UserId == id && k.Aktif)
+                .Include(k => k.Kategori)
+                .OrderByDescending(k => k.Id)
+                .Take(5)
+                .ToListAsync();
+            
+            // Son 5 öğrenci
+            var sonOgrenciler = await _context.Ogrenciler
+                .Where(o => o.UserId == id && o.Aktif)
+                .Include(o => o.Sinif)
+                .OrderByDescending(o => o.Id)
+                .Take(5)
+                .ToListAsync();
+            
+            // Verileri ViewBag ile geçelim
+            ViewBag.KitapSayisi = kitapSayisi;
+            ViewBag.OgrenciSayisi = ogrenciSayisi;
+            ViewBag.AktifOduncSayisi = aktifOduncSayisi;
+            ViewBag.ToplamOduncSayisi = toplamOduncSayisi;
+            
+            ViewBag.SonOduncler = sonOduncler;
+            ViewBag.SonKitaplar = sonKitaplar;
+            ViewBag.SonOgrenciler = sonOgrenciler;
+            
+            return View(user);
+        }
     }
 } 
