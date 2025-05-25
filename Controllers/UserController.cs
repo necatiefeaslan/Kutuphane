@@ -199,7 +199,17 @@ namespace Kutuphane.Controllers
             if (HttpContext.Session.GetString("Role") != "Admin")
                 return RedirectToAction("Index", "Home");
             
-            return View();
+            // Boş bir User modeli oluştur, böylece formda hiçbir alan dolu gelmeyecek
+            var emptyUser = new User { 
+                Username = "",
+                Email = "",
+                Password = "",
+                FirstName = "",
+                LastName = "",
+                Role = "User" // Varsayılan rol
+            };
+            
+            return View(emptyUser);
         }
 
         // POST: User/CreateUser
