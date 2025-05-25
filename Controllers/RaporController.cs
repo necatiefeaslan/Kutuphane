@@ -54,7 +54,9 @@ namespace Kutuphane.Controllers
             // Tarih filtreleme - Bitiş tarihi
             if (bitisTarihi.HasValue)
             {
-                query = query.Where(o => o.OduncAlmaTarihi <= bitisTarihi.Value.Date.AddDays(1).AddSeconds(-1));
+                query = query.Where(o => o.IadeTarihi.HasValue 
+                    ? o.IadeTarihi <= bitisTarihi.Value.Date.AddDays(1).AddSeconds(-1)
+                    : o.OduncAlmaTarihi.AddDays(15) <= bitisTarihi.Value.Date.AddDays(1).AddSeconds(-1));
             }
 
             // İade edilmemiş kitaplar
